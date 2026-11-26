@@ -65,7 +65,7 @@ export default function Vault() {
           {events.map((e) => (
             <View key={e.id} style={styles.line}>
               <T v="caption" style={{ flex: 1 }}>
-                {EVENT_LABEL[e.ruleId] ?? e.ruleId}
+                {e.ruleId === 'achievement' ? `Achievement · ${ACHIEVEMENTS.find((a) => a.id === e.key)?.title ?? e.key}` : (EVENT_LABEL[e.ruleId] ?? e.ruleId)}
               </T>
               <T v="mono">+{e.amount}</T>
             </View>

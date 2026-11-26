@@ -1,69 +1,72 @@
 # EchoReader
 
-The reader for Flame Sigil and the Echoverse. One TypeScript codebase ships to **iOS** and **Android** (Expo SDK 58 / React Native 0.88), with a web build used for QA.
+**Beyond the Page.** A free comic and manga reader for anyone, and the official home of **Flame Sigil** and the Echoverse. One TypeScript codebase ships to **iOS** and **Android** (Expo SDK 58 / React Native 0.88), with a web build used for QA.
 
-Design source: Paper file **“EchoReader — Flame Sigil”** (Research & Spec, Mobile, Desktop, Tablet pages). Colors, type and spacing here mirror its Kiln tokens one-to-one (`src/theme/tokens.ts`).
+> Make the reader free. Make the story worth paying for. Make ownership worth collecting.
 
-## What’s in v0.1
+## What's in v0.2
 
-| Area | What works |
+| Area | Status |
 | --- | --- |
-| **Reading** | Three modes. **Sigil View** frames one panel at a time with an animated camera and spotlight. **Scroll** is a continuous strip. **Pages** swipes whole pages and pairs them into two-page spreads on landscape tablets. Right-to-left books invert tap zones and swipe direction. The mode can be saved per series. |
-| **Echo Layer** | Gold glyph hotspots on the art open Codex entries. A glyph only becomes tappable once the reader reaches its panel. In Sigil View, taps are resolved by inverting the camera, so glyphs never fight the tap zones. |
-| **Spoiler shield** | The Codex, Echo cards and Cypher threads never show anything past the reader’s furthest panel. Spoiler comments are folded, not deleted. Deep links to sealed entries redirect. |
-| **Nine Fragments** | Progress tracking. A fragment moment plays exactly once, at the panel where the fragment is found. Origin unlocks at 9/9. |
-| **Fair access** | Chapters become free for everyone within 24h (enforced by tests on catalog data). An Ember unlocks early. Readers earn one Ember per ISO week in which they finish a chapter. No ads, no paid waits. |
-| **POW-verified editions** | Each page is SHA-256 hashed on the device and compared with the ledger record. A mismatch names the exact pages and never blocks reading. |
-| **Cypher** | Threads pinned to panels, sorted by Top/Newest/Creator, with creator badges and folded spoilers. Posting is stubbed until the service exists. |
-| **Library / Discover / Codex / Downloads / Profile / Onboarding** | Built to the Paper designs, persisted on device (SQLite key-value store). |
+| **Free personal library** | Import **CBZ, JPEG, PNG, WebP** (verified) and **PDF** (native renderer, needs a device build). Collections, favorites, metadata editing, cover choice, removal. Files never leave the device; no account needed. |
+| **Reading** | Scroll and Pages for everything; **Sigil View** for publications with authored panels. Fit page/width/height, pinch and double-tap zoom, LTR/RTL, tablet spreads, dark/light background, bookmarks, history, Reduce Motion support, manual panel controls. |
+| **Flame Sigil** | Approved catalog (Prologue to Chapter Six) from a **signed publication manifest**. Chapter One is free (an excerpt: the pages that exist so far). Later chapters show approved titles and await their masters. |
+| **Echo Layer · Spoiler Shield · Nine Fragments** | Preserved from v0.1 and now gated by publication capabilities. Glyph discoveries earn Embers. |
+| **Commerce** | Publisher-controlled access (10 states), Standard / Collector / Legendary editions ($4.99 / $9.99 / $19.99, all configurable), idempotent purchase ledger, refunds, restore. **Sandbox purchases only**; real store billing isn't built. |
+| **Embers** | Rule-based, idempotent, capped, non-transferable rewards. Not money; they never unlock paid chapters unless a publisher opts in per chapter. |
+| **Vault** | Embers, editions, collectibles (honestly labeled: Sandbox, Reserved, Verified), Genesis/Elemental Sigils (not yet issued), fragments, achievements, verification records. |
+| **POW** | Page-level SHA-256 integrity plus publication hash, edition and publisher IDs, versioned manifests and ed25519 issuer signatures. Integrity is never presented as proof of copyright or ownership. |
+| **Backend foundation** | Supabase schema with row-level security (tested against Postgres), server-side page authorization, signed-URL edge function. **Not deployed.** |
+| **Privacy** | Analytics off by default, never includes imported comic names, synthetic events flagged; on-device data erase. |
 
-Real Flame Sigil art ships in the bundle: the cover, Malik Blaze’s portrait, page 4 and the Chapter One finale. See `docs/CONTENT.md` for what is real and what is placeholder.
+Full status per feature: [docs/v0.2/01-SUMMARY.md](docs/v0.2/01-SUMMARY.md).
 
 ## Run it
 
 ```bash
 npm install
-npx expo start            # press i (iOS simulator) or a (Android emulator)
+npx expo start
 ```
 
-EchoReader uses native modules, including SQLite, haptics and the dev client, so run it as a **development build**, not in Expo Go:
+EchoReader uses native modules (SQLite, haptics, document picker and its own PDF module), so run a **development build**, not Expo Go:
 
 ```bash
-npx expo run:ios          # needs Xcode
-npx expo run:android      # needs Android Studio
-# or build in the cloud:
+npx expo run:ios                 # Xcode
+npx expo run:android             # Android Studio
 npx eas-cli@latest build --profile development-simulator --platform ios
 npx eas-cli@latest build --profile development --platform android
 ```
 
-Store builds: `npx eas-cli@latest build --profile production --platform all`. Bundle IDs are `com.talonsight.echoreader` on both platforms. Change them in `app.json` before the first store submission if needed.
+| Environment variable | Effect |
+|---|---|
+| `EXPO_PUBLIC_COMMERCE=sandbox` | Enable sandbox purchases in a release build (always on in development) |
+| `EXPO_PUBLIC_CONTENT_URL` | Content service base URL (remote manifests; not live yet) |
+| `EXPO_PUBLIC_SUPABASE_URL` | Backend for accounts and sync (not wired yet) |
 
 ## Verify
 
 ```bash
-npm run verify            # typecheck + 57 unit tests + lint + ledger check
-npm run hash-content      # regenerate POW ledger after changing any page art
-node scripts/hash-content.mjs --check   # CI: fail if the ledger is stale
+npm run verify            # typecheck, 138 Jest tests, lint, manifest check, Postgres RLS tests
+npm run build-manifests   # after editing content-src/ or page art: rehash and re-sign
+npm run test:db           # backend schema + security rules against Postgres (PGlite)
+npm run keygen -- <path>  # create a production manifest-signing key (keep it private)
 ```
 
 ## Project map
 
 ```
-src/
-  domain/      Pure rules, no React: spoilers, access/Embers, fragments, POW, Sigil camera, mode resolution
-  content/     Catalog (series, chapters, panels, glyphs, Codex, Cypher seed), editions.json, generated ledger
-  state/       Reader state (pure reducer + persisted store), derived hooks, platform key-value storage
-  services/    Device-side POW hashing (expo-asset + expo-file-system + expo-crypto)
-  reader/      Sigil / Scroll / Pages readers, page art with glyphs & pins, sheets (Echo, settings, POW)
-  ui/          Kiln kit: type, buttons, chips, toggles, segmented, icons, POW seal
-  theme/       Tokens from the Paper file
-  app/         Expo Router screens
-__tests__/     domain, catalog integrity + ledger, state/store
-scripts/       hash-content.mjs (POW ledger builder)
-docs/          ARCHITECTURE.md, CONTENT.md
+src/domain/        pure rules: commerce, rewards, library, import, manifest, signature, POW, Sigil, spoilers
+src/content/       catalog from signed manifests, lore pack, trusted issuers
+src/state/         ReaderState v2 reducer, persistence, derived hooks, shelves
+src/services/      importer, page store, commerce, identity, analytics, POW hashing, config
+src/reader/        Sigil / Scroll / Pages readers, zoom, sheets
+src/app/           screens: Home, Discover, Library, Vault, Profile, reader, editions, series, Codex, Cypher…
+modules/echo-pdf/  local Expo module: PDF rendering with PDFKit / PdfRenderer
+content-src/       approved editorial metadata → manifests
+supabase/          schema + RLS, edge function (foundation)
+scripts/           build-manifests, keygen, test-db
+docs/              ARCHITECTURE.md, CONTENT.md, v0.2/ (audit, commerce, data, manifest spec, security, test report, summary)
 ```
-
-More: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · [docs/CONTENT.md](docs/CONTENT.md)
 
 ## License
 

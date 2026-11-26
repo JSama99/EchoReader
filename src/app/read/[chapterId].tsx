@@ -19,7 +19,7 @@ import { ScrollReader } from '@/reader/scroll-reader';
 import { SigilReader } from '@/reader/sigil-reader';
 import { track } from '@/services/analytics';
 import { releasePages, resolvePages } from '@/services/page-store';
-import { accessOf, furthestOf, useCatalogVersion, useNow } from '@/state/derived';
+import { furthestOf, useAccess, useCatalogVersion, useNow } from '@/state/derived';
 import { useDispatch, useReader } from '@/state/store';
 import { color, radius } from '@/theme/tokens';
 import { Back, Bookmark, Settings } from '@/ui/icons';
@@ -72,7 +72,7 @@ export default function Reader() {
 
 function CatalogReader({ id }: { id: string }) {
   const now = useNow(30_000);
-  const access = useReader((s) => accessOf(s, id, now));
+  const access = useAccess(id, now)!;
   const chapter = getChapter(id);
   const series = chapter ? getSeries(chapter.seriesId) : undefined;
   if (!chapter || !series) return <Redirect href="/" />;

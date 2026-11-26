@@ -7,6 +7,7 @@ The following is NOT covered by the MIT license in `LICENSE`:
 - `assets/content/**`: all comic pages, covers, portraits and other artwork
 - `assets/images/**`: app icon, splash, favicon and the Flame Sigil / EchoReader
   / TalonSight brand marks
+- `content-src/**`: approved Flame Sigil publication metadata
 - `src/content/**`: the story, characters, Codex entries, Cypher comments,
   fragments, series and chapter data, credits, and the content ledger
 - `docs/CONTENT.md` where it describes Echoverse story material
