@@ -1,0 +1,17 @@
+{
+  "$comment": "Source of truth for what goes into each POW-verified edition. scripts/hash-content.mjs hashes these files into ledger.generated.json. Page order here must match the page order in catalog.ts.",
+  "chapters": [
+    {
+      "seriesId": "flame-sigil",
+      "chapterId": "flame-sigil-1",
+      "credits": [
+        { "role": "Creator", "name": "J-Sama" },
+        { "role": "Publisher", "name": "TalonSight Technologies" }
+      ],
+      "pages": [
+        "assets/content/flame-sigil/ch1_p04.jpg",
+        "assets/content/flame-sigil/ch1_p22_finale.jpg"
+      ]
+    }
+  ]
+}

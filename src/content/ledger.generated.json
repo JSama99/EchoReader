@@ -1,0 +1,16 @@
+{
+  "records": [
+    {
+      "chapterId": "flame-sigil-1",
+      "pageHashes": [
+        "e4d1fd4881ec1dd76d5ff2636715dc06e0ee90fa1a3d76831a0762dc7bb6ae85",
+        "5c5e387113110d26fe52989c0cb0a8c93aa7418fb2fee325c2cababc38bb06d7"
+      ],
+      "pageBytes": [
+        684447,
+        633103
+      ],
+      "chapterHash": "2c8f81b5022d9c68490138a47190eb86a9cba60c415744cf091711bfc4e3ab4a"
+    }
+  ]
+}
