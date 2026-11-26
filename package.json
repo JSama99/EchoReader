@@ -1,7 +1,7 @@
 {
   "name": "echoreader",
   "version": "1.0.0",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "TalonSight Technologies",
   "main": "expo-router/entry",
   "dependencies": {

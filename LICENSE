@@ -1,22 +1,25 @@
-Copyright (c) 2026 TalonSight Technologies. All Rights Reserved.
+MIT License (source code only)
 
-EchoReader, including its source code, documentation, design files, and all
-artwork, characters, story content, and other material from the Echoverse
-(including Flame Sigil), is the proprietary and confidential property of
-TalonSight Technologies.
+Copyright (c) 2026 TalonSight Technologies
 
-No license or right is granted to use, copy, modify, merge, publish,
-distribute, sublicense, sell, or create derivative works from any part of
-this software or its content, in whole or in part, by any means, without the
-prior express written permission of TalonSight Technologies.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software source code and associated documentation files (the
+"Software"), to deal in the Software without restriction, including without
+limitation the rights to use, copy, modify, merge, publish, distribute,
+sublicense, and/or sell copies of the Software, and to permit persons to whom
+the Software is furnished to do so, subject to the following conditions:
 
-Viewing this repository, where it is made accessible, does not grant any
-license, express or implied.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+SCOPE: This license covers the Software's source code and documentation ONLY.
+It does NOT cover the Reserved Content listed in LICENSE-CONTENT.md (story,
+art, characters, brand marks), which remains All Rights Reserved.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-TALONSIGHT TECHNOLOGIES BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY
-ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE.
-
-For licensing inquiries, contact TalonSight Technologies.
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

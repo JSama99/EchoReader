@@ -67,4 +67,5 @@ More: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · [docs/CONTENT.md](docs/CON
 
 ## License
 
-Copyright © 2026 TalonSight Technologies. All Rights Reserved. Proprietary. See [LICENSE](LICENSE).
+- **Source code:** MIT. See [LICENSE](LICENSE).
+- **Story, art, characters and brand marks:** © 2026 TalonSight Technologies, All Rights Reserved. See [LICENSE-CONTENT.md](LICENSE-CONTENT.md). Forks must replace this content with their own.
