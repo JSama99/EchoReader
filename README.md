@@ -64,3 +64,7 @@ docs/          ARCHITECTURE.md, CONTENT.md
 ```
 
 More: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · [docs/CONTENT.md](docs/CONTENT.md)
+
+## License
+
+Copyright © 2026 TalonSight Technologies. All Rights Reserved. Proprietary. See [LICENSE](LICENSE).

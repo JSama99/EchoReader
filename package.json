@@ -1,6 +1,8 @@
 {
   "name": "echoreader",
   "version": "1.0.0",
+  "license": "UNLICENSED",
+  "author": "TalonSight Technologies",
   "main": "expo-router/entry",
   "dependencies": {
     "@expo-google-fonts/inter-tight": "^0.4.2",
