@@ -1,5 +1,6 @@
 import { applyTransaction } from '@/domain/commerce/ledger';
 import { emptyLedger, type CommerceLedger, type Edition, type PurchaseTransaction } from '@/domain/commerce/types';
+import type { FitMode } from '@/domain/fit';
 import type { Bookmark, Collection, HistoryEntry, LocalPublication } from '@/domain/library';
 import { maxPosition, START } from '@/domain/position';
 import { award, DEFAULT_RULES, dayKey, emptyRewards, redeem, type RedeemableItem, type RewardLedger } from '@/domain/rewards';
@@ -11,7 +12,7 @@ import type { Position, ReadingMode } from '@/domain/types';
  */
 
 export type ReaderTheme = 'dark' | 'light';
-export type FitMode = 'page' | 'width' | 'height';
+export type { FitMode } from '@/domain/fit';
 export type MotionPref = 'system' | 'reduce' | 'full';
 
 export type ReaderState = {

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { chapters, commentsFor, panelKey } from '@/content/catalog';
+import { allChapters, commentsFor, panelKey } from '@/content/catalog';
 import { pageImages } from '@/content/images';
 import { isReached } from '@/domain/position';
 import { shieldComments, type ShieldedComment } from '@/domain/spoilers';
@@ -25,7 +25,7 @@ export default function Thread() {
   const [draft, setDraft] = useState('');
   const [revealed, setRevealed] = useState<string[]>([]);
 
-  const loc = chapters
+  const loc = allChapters()
     .flatMap((ch) => ch.pages.flatMap((p, pi) => p.panels.map((pn, i) => ({ ch, p, pi, i, pn }))))
     .find((x) => panelKey(x.p, x.i) === key);
   if (!loc || !isReached({ chapter: loc.ch.number, page: loc.pi, panel: loc.i }, furthest)) return <Redirect href="/cypher" />;

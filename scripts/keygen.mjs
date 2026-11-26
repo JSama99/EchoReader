@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 /** Create an ed25519 signing key. Usage: npm run keygen -- <path-outside-the-repo.pem> */
+import { Buffer } from 'node:buffer';
 import { generateKeyPairSync } from 'node:crypto';
 import { existsSync, writeFileSync } from 'node:fs';
 

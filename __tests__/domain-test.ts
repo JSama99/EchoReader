@@ -24,21 +24,10 @@ import {
   shieldComments,
   shieldEntry,
 } from '@/domain/spoilers';
-import type { Chapter, CodexEntry, Fragment, Page, Series } from '@/domain/types';
+import type { CodexEntry, Fragment, Page, Series } from '@/domain/types';
 
 const sha256 = async (s: string) => createHash('sha256').update(s, 'utf8').digest('hex');
 const P = (chapter: number, page: number, panel: number) => ({ chapter, page, panel });
-
-const chapter = (over: Partial<Chapter> = {}): Chapter => ({
-  id: 'fs-1',
-  seriesId: 'flame-sigil',
-  number: 1,
-  title: 'Test',
-  contentStatus: 'complete',
-  pages: [],
-  credits: [{ role: 'Creator', name: 'J-Sama' }],
-  ...over,
-});
 
 describe('position', () => {
   it('orders by chapter, then page, then panel', () => {

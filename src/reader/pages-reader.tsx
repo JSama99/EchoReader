@@ -2,22 +2,13 @@ import { useMemo, useRef, useState } from 'react';
 import { FlatList, Pressable, ScrollView, View, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 
 import { spreadsFor, type Step } from '@/domain/sigil';
-import type { Chapter, GlyphHotspot, Page, Position, ReadingDirection } from '@/domain/types';
-import type { FitMode } from '@/state/model';
+import type { Chapter, GlyphHotspot, Position, ReadingDirection } from '@/domain/types';
+import { fitPage, type FitMode } from '@/domain/fit';
 
 import { PageArt } from './page-art';
 import { Zoomable } from './zoomable';
 
 const GAP = 4;
-
-/** Size a page for a fit mode within a viewport. */
-export function fitPage(p: Pick<Page, 'width' | 'height'>, vp: { width: number; height: number }, fit: FitMode, pad: number) {
-  const r = p.width / p.height;
-  if (fit === 'width') return { width: vp.width, height: vp.width / r };
-  if (fit === 'height') return { width: vp.height * r, height: vp.height };
-  const h = Math.min(vp.height - pad * 2, (vp.width - pad * 2) / r);
-  return { width: h * r, height: h };
-}
 
 /**
  * Whole pages, swiped. Fit page / width / height, pinch and double-tap zoom.

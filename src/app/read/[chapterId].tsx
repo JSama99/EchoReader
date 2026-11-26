@@ -126,7 +126,6 @@ function ReaderView({
   const [fullPage, setFullPage] = useState(false);
   const [previewEnded, setPreviewEnded] = useState(false);
   const powShown = useRef(false);
-  const started = useRef(Date.now());
 
   const modes = modesFor(caps);
   const mode = supportedMode(resolveMode(series, state.seriesModes, state.globalMode), caps);
@@ -146,7 +145,7 @@ function ReaderView({
   useEffect(() => {
     dispatch({ type: 'opened', key, chapterId: chapter.id, now: Date.now() });
     track(format ? { name: 'local_read_start', format } : { name: 'chapter_start', publicationId: chapter.id, mode });
-    const t0 = started.current;
+    const t0 = Date.now();
     return () => track({ name: 'reading_session', publicationId: chapter.id, seconds: (Date.now() - t0) / 1000, mode });
     // Once per opening of this chapter.
     // eslint-disable-next-line react-hooks/exhaustive-deps

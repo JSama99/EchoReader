@@ -2,7 +2,7 @@ import { useRouter } from 'expo-router';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { chapters, commentCount, panelKey } from '@/content/catalog';
+import { allChapters, commentCount, panelKey } from '@/content/catalog';
 import { isReached } from '@/domain/position';
 import { useFurthest } from '@/state/derived';
 import { color } from '@/theme/tokens';
@@ -15,7 +15,7 @@ export default function CypherHub() {
   const router = useRouter();
   const furthest = useFurthest('flame-sigil');
 
-  const threads = chapters.flatMap((ch) =>
+  const threads = allChapters().flatMap((ch) =>
     ch.pages.flatMap((p, pi) =>
       p.panels.map((panel, i) => ({
         key: panelKey(p, i),

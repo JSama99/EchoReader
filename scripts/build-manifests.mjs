@@ -14,6 +14,7 @@
  * canonicalJson and the header parsers must match src/domain; the test suite
  * re-derives everything with the app's own implementations to enforce that.
  */
+import { Buffer } from 'node:buffer';
 import { createHash, createPrivateKey, sign } from 'node:crypto';
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';

@@ -4,7 +4,7 @@ import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { chapters, getEntry } from '@/content/catalog';
+import { allChapters, getEntry } from '@/content/catalog';
 import { portraitImages } from '@/content/images';
 import { isEntryDiscovered, shieldEntry } from '@/domain/spoilers';
 import { useFurthest } from '@/state/derived';
@@ -24,7 +24,7 @@ export default function CodexEntryScreen() {
 
   const s = shieldEntry(entry, furthest);
   const portrait = portraitImages[entry.id];
-  const firstChapter = chapters.find((c) => c.number === entry.firstSeen.chapter && c.seriesId === entry.seriesId);
+  const firstChapter = allChapters().find((c) => c.number === entry.firstSeen.chapter && c.seriesId === entry.seriesId);
   const firstPage = firstChapter?.pages[entry.firstSeen.page];
   const bonds = (entry.bondIds ?? []).map(getEntry).filter((b) => b && isEntryDiscovered(b, furthest));
 

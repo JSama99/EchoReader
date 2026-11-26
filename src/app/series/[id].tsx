@@ -4,16 +4,17 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { chaptersOf, fragments, getSeries } from '@/content/catalog';
-import { accessFor, formatCountdown } from '@/domain/access';
+import { ACCESS_LABEL, canOpen } from '@/domain/commerce/access';
+import { modesFor } from '@/domain/capabilities';
 import { toRoman } from '@/domain/fragments';
 import { isReached } from '@/domain/position';
-import { resolveMode } from '@/domain/reading-mode';
+import { MODE_LABEL, resolveMode } from '@/domain/reading-mode';
 import { chapterProgress } from '@/domain/sigil';
 import type { ReadingMode } from '@/domain/types';
-import { furthestOf, useNow } from '@/state/derived';
+import { accessOf, furthestOf, useCatalogVersion, useNow } from '@/state/derived';
 import { useDispatch, useReader } from '@/state/store';
 import { color, radius } from '@/theme/tokens';
-import { Back, Check, Ember, Lock } from '@/ui/icons';
+import { Back, Check, Lock, Star } from '@/ui/icons';
 import { Button, Chip, IconButton, ProgressBar, Row, Segmented, T } from '@/ui/kit';
 
 export default function SeriesScreen() {
@@ -22,7 +23,8 @@ export default function SeriesScreen() {
   const insets = useSafeAreaInsets();
   const dispatch = useDispatch();
   const state = useReader((s) => s);
-  const now = useNow();
+  const now = useNow(30_000);
+  useCatalogVersion();
   const series = getSeries(id);
   if (!series) return null;
 
@@ -31,6 +33,8 @@ export default function SeriesScreen() {
   const current = state.current[series.id];
   const mode = resolveMode(series, state.seriesModes, state.globalMode);
   const following = state.following.includes(series.id);
+  const favorite = state.favorites.includes(series.id);
+  const first = list.find((c) => c.pages.length > 0);
 
   return (
     <View style={{ flex: 1, backgroundColor: color.soot }}>
@@ -40,7 +44,12 @@ export default function SeriesScreen() {
           <IconButton label="Back" onPress={() => router.back()}>
             <Back />
           </IconButton>
-          <Chip label={following ? 'Following' : 'Follow'} active={!following} onPress={() => dispatch({ type: 'toggleFollow', seriesId: series.id })} />
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+            <IconButton label={favorite ? 'Remove from favorites' : 'Add to favorites'} onPress={() => dispatch({ type: 'toggleFavorite', key: series.id })}>
+              <Star filled={favorite} />
+            </IconButton>
+            <Chip label={following ? 'Following' : 'Follow'} active={!following} onPress={() => dispatch({ type: 'toggleFollow', seriesId: series.id })} />
+          </View>
         </View>
 
         <View style={{ paddingHorizontal: 24, gap: 12, paddingTop: 8 }}>
@@ -48,7 +57,7 @@ export default function SeriesScreen() {
           <T v="display">{series.title.toUpperCase().replace(' ', '\n')}</T>
           <T v="body">{series.tagline}</T>
           <T v="mono">
-            {list.length} CH / NEW FRIDAYS / TALONSIGHT
+            {list.length} PUBLICATIONS / TALONSIGHT
           </T>
         </View>
 
@@ -57,11 +66,7 @@ export default function SeriesScreen() {
           <Segmented<ReadingMode>
             value={mode}
             onChange={(m) => dispatch({ type: 'setMode', seriesId: series.id, mode: m, remember: true })}
-            options={[
-              { key: 'sigil', label: 'Sigil View' },
-              { key: 'scroll', label: 'Scroll' },
-              { key: 'pages', label: 'Pages' },
-            ]}
+            options={modesFor(series.capabilities).map((m) => ({ key: m, label: MODE_LABEL[m] }))}
           />
         </View>
 
@@ -70,11 +75,11 @@ export default function SeriesScreen() {
             <T v="title" style={{ fontSize: 16 }}>
               Book One
             </T>
-            <T v="mono">CH 1–{list.length}</T>
+            <T v="mono">{list.length} ENTRIES</T>
           </View>
 
           {list.map((ch) => {
-            const access = accessFor(ch, now, new Set(state.unlockedChapterIds), state.embers);
+            const access = accessOf(state, ch.id, now);
             const finished = state.finishedChapterIds.includes(ch.id);
             const isCurrent = current?.chapter === ch.number && !finished;
             const fragmentHere = fragments.find((f) => f.foundAt.chapter === ch.number);
@@ -83,24 +88,18 @@ export default function SeriesScreen() {
               isCurrent && current ? chapterProgress(ch.pages, { page: current.page, panel: current.panel }) : 0;
             const empty = ch.pages.length === 0;
 
-            const open = () => {
-              if (access.kind === 'early' || access.kind === 'unreleased') router.push(`/unlock/${ch.id}`);
-              else if (!empty) router.push(`/read/${ch.id}`);
-            };
+            const readable = !empty && canOpen(access, ch.pages.length);
+            const open = () => router.push(readable ? `/read/${ch.id}` : `/editions/${ch.id}`);
 
-            let sub = `${ch.pages.length} pages`;
+            let sub = `${ACCESS_LABEL[access.kind]} · ${ch.pages.length} pages${ch.contentStatus === 'excerpt' ? ' (excerpt)' : ''}`;
             let subColor: string = color.smoke;
             if (finished) sub = 'Read';
-            if (access.kind === 'early') {
-              sub = `Early access · free for all in ${formatCountdown(access.msUntilFree).slice(0, 5).replace(':', 'h ')}m`;
-            } else if (access.kind === 'unreleased') {
-              sub = `Arrives Friday · free 24h later`;
+            if (empty) {
+              sub = `${access.kind === 'free' || access.kind === 'unpublished' ? '' : `${ACCESS_LABEL[access.kind]} · `}Pages not yet released`;
               subColor = color.storm;
             } else if (fragmentHere && !fragFound) {
               sub = `Fragment ${toRoman(fragmentHere.ordinal)} inside`;
               subColor = color.glyph;
-            } else if (empty) {
-              sub = 'Pages arrive Friday';
             }
 
             return (
@@ -108,11 +107,11 @@ export default function SeriesScreen() {
                 key={ch.id}
                 onPress={open}
                 accessibilityRole="button"
-                accessibilityLabel={`Chapter ${ch.number}, ${ch.title}. ${sub}`}
+                accessibilityLabel={`${ch.label}, ${ch.title}. ${sub}`}
                 style={[styles.chapterRow, isCurrent && { minHeight: 72 }]}
               >
                 <T v="mono" style={{ width: 28, fontSize: 14, color: isCurrent ? color.ember : finished ? color.smoke : color.bone }}>
-                  {ch.number}
+                  {ch.number === 0 ? 'P' : ch.number}
                 </T>
                 <View style={{ flex: 1, gap: isCurrent ? 6 : 3 }}>
                   <T v="bodyStrong" style={{ color: finished ? color.smoke : color.bone, fontFamily: isCurrent ? undefined : 'InterTight_500Medium' }}>
@@ -134,14 +133,7 @@ export default function SeriesScreen() {
                 <View style={{ width: 92, alignItems: 'flex-end' }}>
                   {isCurrent ? (
                     <Button label="Resume" height={32} style={{ paddingHorizontal: 14 }} onPress={open} />
-                  ) : access.kind === 'early' ? (
-                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-                      <Ember />
-                      <T v="mono" style={{ color: color.bone, fontSize: 13 }}>
-                        1
-                      </T>
-                    </View>
-                  ) : access.kind === 'unreleased' ? (
+                  ) : !readable ? (
                     <Lock />
                   ) : finished ? (
                     <Check color={color.smoke} />
@@ -154,9 +146,9 @@ export default function SeriesScreen() {
           })}
         </View>
 
-        {!current && list[0] && list[0].pages.length > 0 && (
+        {!current && first && (
           <View style={{ paddingHorizontal: 24, paddingTop: 24 }}>
-            <Button label="Start Chapter 1" onPress={() => router.push(`/read/${list[0].id}`)} />
+            <Button label={`Start ${first.label ?? first.title}`} onPress={() => router.push(`/read/${first.id}`)} />
           </View>
         )}
       </ScrollView>

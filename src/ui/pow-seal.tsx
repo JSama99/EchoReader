@@ -27,9 +27,9 @@ export function PowSeal({ result, onPress }: { result: VerifyResult | undefined;
   const tone = state === 'mismatch' ? color.ember : color.bone;
   const a11y =
     result?.status === 'verified'
-      ? `Verified edition, ledger hash ${shortHash(result.chapterHash)}`
+      ? `Pages match the publisher’s record, hash ${shortHash(result.chapterHash)}`
       : result?.status === 'mismatch'
-        ? 'This copy does not match the ledger. Tap for details.'
+        ? 'This copy does not match the publisher’s record. Tap for details.'
         : 'Edition verification';
   return (
     <Pressable
