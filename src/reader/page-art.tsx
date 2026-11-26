@@ -38,7 +38,9 @@ export function PageArt({
   onGlyph: (g: GlyphHotspot) => void;
 }) {
   const router = useRouter();
+  // Glyphs and pins exist only on publications that declare Echo / Cypher; imported pages have none.
   const glyphs = echoEnabled ? activeGlyphs(page.glyphs, chapterNumber, pageIndex, furthest) : [];
+  const source = page.src ? { uri: page.src } : pageImages[page.id];
 
   const pins = showPins
     ? page.panels
@@ -48,7 +50,13 @@ export function PageArt({
 
   return (
     <View style={{ width, height }} accessibilityRole="image" accessibilityLabel={`Page ${page.label}`}>
-      <Image source={pageImages[page.id]} style={StyleSheet.absoluteFill} contentFit="fill" transition={150} />
+      {source ? (
+        <Image source={source} style={StyleSheet.absoluteFill} contentFit="fill" transition={150} recyclingKey={page.id} />
+      ) : (
+        <View style={[StyleSheet.absoluteFill, styles.missing]}>
+          <T v="caption">Page unavailable</T>
+        </View>
+      )}
 
       {glyphs.map((g) => {
         const box = { left: g.rect.x * width, top: g.rect.y * height, width: g.rect.w * width, height: g.rect.h * height };
@@ -85,6 +93,7 @@ export function PageArt({
 }
 
 const styles = StyleSheet.create({
+  missing: { alignItems: 'center', justifyContent: 'center', backgroundColor: color.char },
   glyph: {
     position: 'absolute',
     borderRadius: radius.full,

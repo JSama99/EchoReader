@@ -1,0 +1,895 @@
+{
+  "$comment": "Editorial source for the Flame Sigil manifest. Approved metadata only: never invent titles, dates or lore here. Run `npm run build-manifests` after editing; it hashes the page files and signs src/content/manifests/flame-sigil.json.",
+  "manifestId": "talonsight/flame-sigil",
+  "version": 1,
+  "issuedAt": "2026-11-26T00:00:00.000Z",
+  "publisher": {
+    "id": "talonsight",
+    "name": "TalonSight Technologies"
+  },
+  "series": {
+    "id": "flame-sigil",
+    "title": "Flame Sigil",
+    "tagline": "Where rhythm, memory, and power collide.",
+    "direction": "ltr",
+    "defaultMode": "sigil",
+    "capabilities": [
+      "standard",
+      "sigil",
+      "echo",
+      "codex",
+      "fragments",
+      "cypher",
+      "verification",
+      "collectibles"
+    ],
+    "status": "live"
+  },
+  "publications": [
+    {
+      "publicationId": "flame-sigil-0",
+      "chapterNumber": 0,
+      "label": "Prologue",
+      "title": "Prologue",
+      "spoilerLevel": "none",
+      "contentStatus": "awaiting-master",
+      "direction": "ltr",
+      "capabilities": [
+        "standard",
+        "sigil",
+        "echo",
+        "codex",
+        "fragments",
+        "cypher",
+        "verification"
+      ],
+      "availability": {
+        "status": "draft"
+      },
+      "access": {
+        "base": "free",
+        "previewPages": 0,
+        "promotions": [],
+        "subscriptionEligible": false
+      },
+      "editions": [],
+      "contentVersion": 1,
+      "credits": [
+        {
+          "role": "Creator",
+          "name": "J-Sama"
+        },
+        {
+          "role": "Publisher",
+          "name": "TalonSight Technologies"
+        }
+      ],
+      "pages": []
+    },
+    {
+      "publicationId": "flame-sigil-1",
+      "chapterNumber": 1,
+      "label": "Chapter One",
+      "title": "Signal Lost",
+      "spoilerLevel": "none",
+      "contentStatus": "excerpt",
+      "direction": "ltr",
+      "capabilities": [
+        "standard",
+        "sigil",
+        "echo",
+        "codex",
+        "fragments",
+        "cypher",
+        "verification"
+      ],
+      "availability": {
+        "status": "published",
+        "publishedAt": "2026-11-20T14:00:00.000Z"
+      },
+      "access": {
+        "base": "free",
+        "previewPages": 0,
+        "promotions": [],
+        "subscriptionEligible": false
+      },
+      "editions": [],
+      "contentVersion": 1,
+      "credits": [
+        {
+          "role": "Creator",
+          "name": "J-Sama"
+        },
+        {
+          "role": "Publisher",
+          "name": "TalonSight Technologies"
+        }
+      ],
+      "pages": [
+        {
+          "id": "fs1-p04",
+          "label": "4",
+          "file": "assets/content/flame-sigil/ch1_p04.jpg",
+          "asset": "bundled:fs1-p04",
+          "panels": [
+            {
+              "id": "marta",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1,
+                "h": 0.2129
+              }
+            },
+            {
+              "id": "sweet-auburn",
+              "rect": {
+                "x": 0,
+                "y": 0.2155,
+                "w": 1,
+                "h": 0.1836
+              }
+            },
+            {
+              "id": "ebenezer",
+              "rect": {
+                "x": 0,
+                "y": 0.4023,
+                "w": 0.4,
+                "h": 0.1888
+              }
+            },
+            {
+              "id": "bell",
+              "rect": {
+                "x": 0.371,
+                "y": 0.4023,
+                "w": 0.629,
+                "h": 0.1888
+              }
+            },
+            {
+              "id": "patchwerk",
+              "rect": {
+                "x": 0,
+                "y": 0.5944,
+                "w": 0.6055,
+                "h": 0.1628
+              }
+            },
+            {
+              "id": "console",
+              "rect": {
+                "x": 0.469,
+                "y": 0.5944,
+                "w": 0.531,
+                "h": 0.1628
+              }
+            },
+            {
+              "id": "skyline",
+              "rect": {
+                "x": 0,
+                "y": 0.7604,
+                "w": 1,
+                "h": 0.2396
+              }
+            }
+          ],
+          "glyphs": [
+            {
+              "id": "g-bell-echo",
+              "rect": {
+                "x": 0.6,
+                "y": 0.5,
+                "w": 0.25,
+                "h": 0.075
+              },
+              "codexEntryId": "the-pulse",
+              "panel": 3
+            }
+          ]
+        },
+        {
+          "id": "fs1-end",
+          "label": "End",
+          "file": "assets/content/flame-sigil/ch1_p22_finale.jpg",
+          "asset": "bundled:fs1-end",
+          "panels": [
+            {
+              "id": "splash",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1,
+                "h": 1
+              }
+            },
+            {
+              "id": "malik",
+              "rect": {
+                "x": 0.075,
+                "y": 0.09,
+                "w": 0.46,
+                "h": 0.91
+              }
+            },
+            {
+              "id": "ayana",
+              "rect": {
+                "x": 0.467,
+                "y": 0.09,
+                "w": 0.49,
+                "h": 0.91
+              }
+            },
+            {
+              "id": "true-signal",
+              "rect": {
+                "x": 0.7,
+                "y": 0.6,
+                "w": 0.3,
+                "h": 0.4
+              }
+            }
+          ],
+          "glyphs": [
+            {
+              "id": "g-phoenix-sleeve",
+              "rect": {
+                "x": 0.165,
+                "y": 0.305,
+                "w": 0.13,
+                "h": 0.1
+              },
+              "codexEntryId": "malik-blaze",
+              "panel": 1
+            },
+            {
+              "id": "g-forearm-sigil",
+              "rect": {
+                "x": 0.135,
+                "y": 0.49,
+                "w": 0.135,
+                "h": 0.2
+              },
+              "codexEntryId": "flame-sigil-mark",
+              "panel": 1
+            },
+            {
+              "id": "g-storm-pendant",
+              "rect": {
+                "x": 0.718,
+                "y": 0.395,
+                "w": 0.065,
+                "h": 0.06
+              },
+              "codexEntryId": "ayana-storm",
+              "panel": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "publicationId": "flame-sigil-2",
+      "chapterNumber": 2,
+      "label": "Chapter Two",
+      "title": "White Silence",
+      "spoilerLevel": "none",
+      "contentStatus": "awaiting-master",
+      "direction": "ltr",
+      "capabilities": [
+        "standard",
+        "sigil",
+        "echo",
+        "codex",
+        "fragments",
+        "cypher",
+        "verification"
+      ],
+      "availability": {
+        "status": "draft"
+      },
+      "access": {
+        "base": "paid",
+        "previewPages": 3,
+        "promotions": [],
+        "subscriptionEligible": false
+      },
+      "editions": [
+        {
+          "id": "fs2-standard",
+          "tier": "standard",
+          "title": "Standard Digital Edition",
+          "price": {
+            "amountMinor": 499,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs2.standard",
+            "android": "fs2_standard"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Standard digital cover",
+            "Personal reading license",
+            "Digital bookshelf access",
+            "Reading progress",
+            "Offline access where supported"
+          ],
+          "includesReading": true,
+          "collectible": null,
+          "onSale": true
+        },
+        {
+          "id": "fs2-collector",
+          "tier": "collector",
+          "title": "NFT Collector Edition",
+          "price": {
+            "amountMinor": 999,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs2.collector",
+            "android": "fs2_collector"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Exclusive collector cover",
+            "Numbered digital collectible edition",
+            "Publication verification",
+            "Defined collectible ownership rights",
+            "Future transfer capability",
+            "Compatible interactive reading features"
+          ],
+          "includesReading": true,
+          "collectible": {
+            "kind": "numbered",
+            "supply": null,
+            "standard": "erc721"
+          },
+          "onSale": true
+        },
+        {
+          "id": "fs2-legendary",
+          "tier": "legendary",
+          "title": "Legendary Collector Edition",
+          "price": {
+            "amountMinor": 1999,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs2.legendary",
+            "android": "fs2_legendary"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Limited legendary edition",
+            "Exclusive cover artwork",
+            "Additional concept artwork",
+            "Creator commentary",
+            "Behind-the-scenes material",
+            "Selected Memory Fragments",
+            "Verified collectible ownership when blockchain integration is available"
+          ],
+          "includesReading": true,
+          "collectible": {
+            "kind": "numbered",
+            "supply": null,
+            "standard": "erc721"
+          },
+          "onSale": true
+        }
+      ],
+      "contentVersion": 1,
+      "credits": [
+        {
+          "role": "Creator",
+          "name": "J-Sama"
+        },
+        {
+          "role": "Publisher",
+          "name": "TalonSight Technologies"
+        }
+      ],
+      "pages": []
+    },
+    {
+      "publicationId": "flame-sigil-3",
+      "chapterNumber": 3,
+      "label": "Chapter Three",
+      "title": "Loop Season",
+      "spoilerLevel": "none",
+      "contentStatus": "awaiting-master",
+      "direction": "ltr",
+      "capabilities": [
+        "standard",
+        "sigil",
+        "echo",
+        "codex",
+        "fragments",
+        "cypher",
+        "verification"
+      ],
+      "availability": {
+        "status": "draft"
+      },
+      "access": {
+        "base": "paid",
+        "previewPages": 3,
+        "promotions": [],
+        "subscriptionEligible": false
+      },
+      "editions": [
+        {
+          "id": "fs3-standard",
+          "tier": "standard",
+          "title": "Standard Digital Edition",
+          "price": {
+            "amountMinor": 499,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs3.standard",
+            "android": "fs3_standard"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Standard digital cover",
+            "Personal reading license",
+            "Digital bookshelf access",
+            "Reading progress",
+            "Offline access where supported"
+          ],
+          "includesReading": true,
+          "collectible": null,
+          "onSale": true
+        },
+        {
+          "id": "fs3-collector",
+          "tier": "collector",
+          "title": "NFT Collector Edition",
+          "price": {
+            "amountMinor": 999,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs3.collector",
+            "android": "fs3_collector"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Exclusive collector cover",
+            "Numbered digital collectible edition",
+            "Publication verification",
+            "Defined collectible ownership rights",
+            "Future transfer capability",
+            "Compatible interactive reading features"
+          ],
+          "includesReading": true,
+          "collectible": {
+            "kind": "numbered",
+            "supply": null,
+            "standard": "erc721"
+          },
+          "onSale": true
+        },
+        {
+          "id": "fs3-legendary",
+          "tier": "legendary",
+          "title": "Legendary Collector Edition",
+          "price": {
+            "amountMinor": 1999,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs3.legendary",
+            "android": "fs3_legendary"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Limited legendary edition",
+            "Exclusive cover artwork",
+            "Additional concept artwork",
+            "Creator commentary",
+            "Behind-the-scenes material",
+            "Selected Memory Fragments",
+            "Verified collectible ownership when blockchain integration is available"
+          ],
+          "includesReading": true,
+          "collectible": {
+            "kind": "numbered",
+            "supply": null,
+            "standard": "erc721"
+          },
+          "onSale": true
+        }
+      ],
+      "contentVersion": 1,
+      "credits": [
+        {
+          "role": "Creator",
+          "name": "J-Sama"
+        },
+        {
+          "role": "Publisher",
+          "name": "TalonSight Technologies"
+        }
+      ],
+      "pages": []
+    },
+    {
+      "publicationId": "flame-sigil-4",
+      "chapterNumber": 4,
+      "label": "Chapter Four",
+      "title": "Roots Run Deep",
+      "spoilerLevel": "none",
+      "contentStatus": "awaiting-master",
+      "direction": "ltr",
+      "capabilities": [
+        "standard",
+        "sigil",
+        "echo",
+        "codex",
+        "fragments",
+        "cypher",
+        "verification"
+      ],
+      "availability": {
+        "status": "draft"
+      },
+      "access": {
+        "base": "paid",
+        "previewPages": 3,
+        "promotions": [],
+        "subscriptionEligible": false
+      },
+      "editions": [
+        {
+          "id": "fs4-standard",
+          "tier": "standard",
+          "title": "Standard Digital Edition",
+          "price": {
+            "amountMinor": 499,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs4.standard",
+            "android": "fs4_standard"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Standard digital cover",
+            "Personal reading license",
+            "Digital bookshelf access",
+            "Reading progress",
+            "Offline access where supported"
+          ],
+          "includesReading": true,
+          "collectible": null,
+          "onSale": true
+        },
+        {
+          "id": "fs4-collector",
+          "tier": "collector",
+          "title": "NFT Collector Edition",
+          "price": {
+            "amountMinor": 999,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs4.collector",
+            "android": "fs4_collector"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Exclusive collector cover",
+            "Numbered digital collectible edition",
+            "Publication verification",
+            "Defined collectible ownership rights",
+            "Future transfer capability",
+            "Compatible interactive reading features"
+          ],
+          "includesReading": true,
+          "collectible": {
+            "kind": "numbered",
+            "supply": null,
+            "standard": "erc721"
+          },
+          "onSale": true
+        },
+        {
+          "id": "fs4-legendary",
+          "tier": "legendary",
+          "title": "Legendary Collector Edition",
+          "price": {
+            "amountMinor": 1999,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs4.legendary",
+            "android": "fs4_legendary"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Limited legendary edition",
+            "Exclusive cover artwork",
+            "Additional concept artwork",
+            "Creator commentary",
+            "Behind-the-scenes material",
+            "Selected Memory Fragments",
+            "Verified collectible ownership when blockchain integration is available"
+          ],
+          "includesReading": true,
+          "collectible": {
+            "kind": "numbered",
+            "supply": null,
+            "standard": "erc721"
+          },
+          "onSale": true
+        }
+      ],
+      "contentVersion": 1,
+      "credits": [
+        {
+          "role": "Creator",
+          "name": "J-Sama"
+        },
+        {
+          "role": "Publisher",
+          "name": "TalonSight Technologies"
+        }
+      ],
+      "pages": []
+    },
+    {
+      "publicationId": "flame-sigil-5",
+      "chapterNumber": 5,
+      "label": "Chapter Five",
+      "title": "Cipher Temple",
+      "spoilerLevel": "none",
+      "contentStatus": "awaiting-master",
+      "direction": "ltr",
+      "capabilities": [
+        "standard",
+        "sigil",
+        "echo",
+        "codex",
+        "fragments",
+        "cypher",
+        "verification"
+      ],
+      "availability": {
+        "status": "draft"
+      },
+      "access": {
+        "base": "paid",
+        "previewPages": 3,
+        "promotions": [],
+        "subscriptionEligible": false
+      },
+      "editions": [
+        {
+          "id": "fs5-standard",
+          "tier": "standard",
+          "title": "Standard Digital Edition",
+          "price": {
+            "amountMinor": 499,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs5.standard",
+            "android": "fs5_standard"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Standard digital cover",
+            "Personal reading license",
+            "Digital bookshelf access",
+            "Reading progress",
+            "Offline access where supported"
+          ],
+          "includesReading": true,
+          "collectible": null,
+          "onSale": true
+        },
+        {
+          "id": "fs5-collector",
+          "tier": "collector",
+          "title": "NFT Collector Edition",
+          "price": {
+            "amountMinor": 999,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs5.collector",
+            "android": "fs5_collector"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Exclusive collector cover",
+            "Numbered digital collectible edition",
+            "Publication verification",
+            "Defined collectible ownership rights",
+            "Future transfer capability",
+            "Compatible interactive reading features"
+          ],
+          "includesReading": true,
+          "collectible": {
+            "kind": "numbered",
+            "supply": null,
+            "standard": "erc721"
+          },
+          "onSale": true
+        },
+        {
+          "id": "fs5-legendary",
+          "tier": "legendary",
+          "title": "Legendary Collector Edition",
+          "price": {
+            "amountMinor": 1999,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs5.legendary",
+            "android": "fs5_legendary"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Limited legendary edition",
+            "Exclusive cover artwork",
+            "Additional concept artwork",
+            "Creator commentary",
+            "Behind-the-scenes material",
+            "Selected Memory Fragments",
+            "Verified collectible ownership when blockchain integration is available"
+          ],
+          "includesReading": true,
+          "collectible": {
+            "kind": "numbered",
+            "supply": null,
+            "standard": "erc721"
+          },
+          "onSale": true
+        }
+      ],
+      "contentVersion": 1,
+      "credits": [
+        {
+          "role": "Creator",
+          "name": "J-Sama"
+        },
+        {
+          "role": "Publisher",
+          "name": "TalonSight Technologies"
+        }
+      ],
+      "pages": []
+    },
+    {
+      "publicationId": "flame-sigil-6",
+      "chapterNumber": 6,
+      "label": "Chapter Six",
+      "title": "Smoke and Static",
+      "spoilerLevel": "none",
+      "contentStatus": "awaiting-master",
+      "direction": "ltr",
+      "capabilities": [
+        "standard",
+        "sigil",
+        "echo",
+        "codex",
+        "fragments",
+        "cypher",
+        "verification"
+      ],
+      "availability": {
+        "status": "draft"
+      },
+      "access": {
+        "base": "paid",
+        "previewPages": 3,
+        "promotions": [],
+        "subscriptionEligible": false
+      },
+      "editions": [
+        {
+          "id": "fs6-standard",
+          "tier": "standard",
+          "title": "Standard Digital Edition",
+          "price": {
+            "amountMinor": 499,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs6.standard",
+            "android": "fs6_standard"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Standard digital cover",
+            "Personal reading license",
+            "Digital bookshelf access",
+            "Reading progress",
+            "Offline access where supported"
+          ],
+          "includesReading": true,
+          "collectible": null,
+          "onSale": true
+        },
+        {
+          "id": "fs6-collector",
+          "tier": "collector",
+          "title": "NFT Collector Edition",
+          "price": {
+            "amountMinor": 999,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs6.collector",
+            "android": "fs6_collector"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Exclusive collector cover",
+            "Numbered digital collectible edition",
+            "Publication verification",
+            "Defined collectible ownership rights",
+            "Future transfer capability",
+            "Compatible interactive reading features"
+          ],
+          "includesReading": true,
+          "collectible": {
+            "kind": "numbered",
+            "supply": null,
+            "standard": "erc721"
+          },
+          "onSale": true
+        },
+        {
+          "id": "fs6-legendary",
+          "tier": "legendary",
+          "title": "Legendary Collector Edition",
+          "price": {
+            "amountMinor": 1999,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs6.legendary",
+            "android": "fs6_legendary"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Limited legendary edition",
+            "Exclusive cover artwork",
+            "Additional concept artwork",
+            "Creator commentary",
+            "Behind-the-scenes material",
+            "Selected Memory Fragments",
+            "Verified collectible ownership when blockchain integration is available"
+          ],
+          "includesReading": true,
+          "collectible": {
+            "kind": "numbered",
+            "supply": null,
+            "standard": "erc721"
+          },
+          "onSale": true
+        }
+      ],
+      "contentVersion": 1,
+      "credits": [
+        {
+          "role": "Creator",
+          "name": "J-Sama"
+        },
+        {
+          "role": "Publisher",
+          "name": "TalonSight Technologies"
+        }
+      ],
+      "pages": []
+    }
+  ]
+}

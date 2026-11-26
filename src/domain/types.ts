@@ -13,6 +13,23 @@ export type ReadingDirection = 'ltr' | 'rtl';
 export type ReadingMode = 'sigil' | 'scroll' | 'pages';
 
 /**
+ * What a publication supports. The core reader needs only 'standard'; every
+ * other capability is opt-in metadata, and the UI shows only what is declared.
+ */
+export type Capability =
+  | 'standard'
+  | 'sigil'
+  | 'echo'
+  | 'annotations'
+  | 'codex'
+  | 'fragments'
+  | 'cypher'
+  | 'soundtrack'
+  | 'verification'
+  | 'collectibles'
+  | 'blockchain';
+
+/**
  * A point in a series' reading order. Comparison is lexicographic on
  * (chapter, page, panel). Page and panel are 0-based indexes into the manifest.
  */
@@ -34,6 +51,11 @@ export type GlyphHotspot = {
 
 export type Page = {
   id: string;
+  /**
+   * Where the art lives when it is not bundled: a file:// URI for imported
+   * comics, an idb:// key on web, or an authorized https URL for remote pages.
+   */
+  src?: string;
   /** Printed label, e.g. "4" or "End". */
   label: string;
   /** Pixel size of the source art; used for aspect ratio. */
@@ -41,33 +63,43 @@ export type Page = {
   height: number;
   panels: Panel[];
   glyphs: GlyphHotspot[];
-  /** Cypher thread key for each panel id, if discussion is open. */
 };
 
 export type Credit = { role: string; name: string };
 
+/**
+ * complete         every page of the approved master is present
+ * excerpt          a demonstration subset of an approved master
+ * awaiting-master  metadata is approved; pages have not been supplied
+ */
+export type ContentStatus = 'complete' | 'excerpt' | 'awaiting-master';
+
+/** A readable unit (a chapter of a series, or one imported comic). */
 export type Chapter = {
   id: string;
   seriesId: string;
+  /** Reading order within the series. The prologue is 0. */
   number: number;
+  /** Display label, e.g. "Prologue" or "Chapter One". */
+  label?: string;
   title: string;
-  /** ISO timestamp the chapter went live for early access. */
-  publishedAt: string;
-  /** ISO timestamp the chapter becomes free for everyone. */
-  freeAt: string;
+  description?: string;
+  contentStatus: ContentStatus;
   pages: Page[];
   credits: Credit[];
 };
 
 export type Series = {
   id: string;
+  publisherId: string;
   title: string;
   tagline: string;
   direction: ReadingDirection;
   defaultMode: ReadingMode;
+  capabilities: Capability[];
   chapterIds: string[];
   status: 'live' | 'coming-soon';
-  /** Expected release date for coming-soon series. */
+  /** Approved label for coming-soon series. */
   releaseLabel?: string;
 };
 

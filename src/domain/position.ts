@@ -1,6 +1,7 @@
 import type { Position } from './types';
 
-export const START: Position = { chapter: 1, page: 0, panel: 0 };
+/** Nothing read yet. Below every real position, including a prologue (chapter 0). */
+export const START: Position = { chapter: -1, page: 0, panel: 0 };
 
 /** Negative if a < b, 0 if equal, positive if a > b. */
 export function comparePositions(a: Position, b: Position): number {
