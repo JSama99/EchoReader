@@ -6,8 +6,8 @@ import { allChapters, commentCount, panelKey } from '@/content/catalog';
 import { isReached } from '@/domain/position';
 import { useFurthest } from '@/state/derived';
 import { color } from '@/theme/tokens';
-import { Bubble, Lock } from '@/ui/icons';
-import { Row, T } from '@/ui/kit';
+import { Back, Bubble, Lock } from '@/ui/icons';
+import { IconButton, Row, T } from '@/ui/kit';
 
 /** Cypher hub: every panel with a thread, grouped by chapter. Threads ahead of you stay sealed. */
 export default function CypherHub() {
@@ -29,7 +29,12 @@ export default function CypherHub() {
   ).filter((t) => t.count > 0);
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: color.soot }} contentContainerStyle={{ paddingTop: insets.top + 6, paddingHorizontal: 24, paddingBottom: 40 }}>
+    <ScrollView style={{ flex: 1, backgroundColor: color.soot }} contentContainerStyle={{ paddingTop: insets.top, paddingHorizontal: 24, paddingBottom: 40 }}>
+      <View style={{ marginLeft: -16 }}>
+        <IconButton label="Back" onPress={() => (router.canGoBack() ? router.back() : router.replace('/'))}>
+          <Back />
+        </IconButton>
+      </View>
       <T v="kicker" style={{ color: color.storm }}>
         Panel-pinned threads
       </T>
@@ -38,6 +43,9 @@ export default function CypherHub() {
       </T>
       <T v="body" style={{ paddingTop: 8, paddingBottom: 12 }}>
         Talk lives on the exact panel it’s about. Threads past where you’ve read stay sealed.
+      </T>
+      <T v="mono" style={{ fontSize: 10, color: color.storm, paddingBottom: 12 }}>
+        SAMPLE DISCUSSION · POSTING OPENS WITH ACCOUNTS AND MODERATION
       </T>
       {threads.map((t) => (
         <Row

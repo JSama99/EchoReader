@@ -7,7 +7,8 @@ import { toRoman } from '@/domain/fragments';
 import { discoveredEntries, shieldEntry } from '@/domain/spoilers';
 import { useFragments, useFurthest } from '@/state/derived';
 import { color } from '@/theme/tokens';
-import { Diamonds, Row, T } from '@/ui/kit';
+import { Back } from '@/ui/icons';
+import { Diamonds, IconButton, Row, T } from '@/ui/kit';
 
 const KIND_LABEL = { character: 'Characters', glyph: 'Glyphs', lore: 'Lore', place: 'Places' } as const;
 
@@ -21,7 +22,12 @@ export default function CodexIndex() {
   const kinds = (['character', 'glyph', 'lore', 'place'] as const).filter((k) => entries.some((e) => e.kind === k));
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: color.soot }} contentContainerStyle={{ paddingTop: insets.top + 6, paddingBottom: 40, paddingHorizontal: 24 }}>
+    <ScrollView style={{ flex: 1, backgroundColor: color.soot }} contentContainerStyle={{ paddingTop: insets.top, paddingBottom: 40, paddingHorizontal: 24 }}>
+      <View style={{ marginLeft: -16 }}>
+        <IconButton label="Back" onPress={() => (router.canGoBack() ? router.back() : router.replace('/'))}>
+          <Back />
+        </IconButton>
+      </View>
       <T v="kicker" style={{ color: color.glyph }}>
         Akasha’s record
       </T>

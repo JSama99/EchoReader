@@ -65,9 +65,10 @@
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "hash-content": "node scripts/build-manifests.mjs",
-    "verify": "tsc --noEmit && jest && eslint . && node scripts/build-manifests.mjs --check",
+    "verify": "tsc --noEmit && jest && eslint . && node scripts/build-manifests.mjs --check && node --test scripts/test-db.mjs",
     "build-manifests": "node scripts/build-manifests.mjs",
-    "keygen": "node scripts/keygen.mjs"
+    "keygen": "node scripts/keygen.mjs",
+    "test:db": "node --test scripts/test-db.mjs"
   },
   "private": true,
   "jest": {

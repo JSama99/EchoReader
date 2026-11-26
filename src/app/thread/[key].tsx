@@ -1,7 +1,7 @@
 import { Image } from 'expo-image';
 import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
-import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { allChapters, commentsFor, panelKey } from '@/content/catalog';
@@ -22,7 +22,6 @@ export default function Thread() {
   const insets = useSafeAreaInsets();
   const furthest = useFurthest('flame-sigil');
   const [sort, setSort] = useState<Sort>('top');
-  const [draft, setDraft] = useState('');
   const [revealed, setRevealed] = useState<string[]>([]);
 
   const loc = allChapters()
@@ -75,25 +74,9 @@ export default function Thread() {
       </ScrollView>
 
       <View style={[styles.composer, { paddingBottom: insets.bottom + 12 }]}>
-        <TextInput
-          value={draft}
-          onChangeText={setDraft}
-          placeholder="Add to the Cypher…"
-          placeholderTextColor={color.smoke}
-          style={styles.input}
-          accessibilityLabel="Write a reaction"
-        />
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel="Post"
-          accessibilityHint="Posting arrives with the Cypher service"
-          disabled
-          style={[styles.send, { opacity: draft ? 0.6 : 0.3 }]}
-        >
-          <T v="bodyStrong" style={{ color: color.soot }}>
-            ↑
-          </T>
-        </Pressable>
+        <T v="caption" style={{ flex: 1, textAlign: 'center' }} accessibilityRole="text">
+          This is sample discussion. Posting opens once accounts and moderation are in place.
+        </T>
       </View>
     </KeyboardAvoidingView>
   );
