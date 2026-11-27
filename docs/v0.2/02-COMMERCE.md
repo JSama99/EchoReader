@@ -49,7 +49,7 @@ Prices are integer minor units with an ISO currency. Benefits are publisher-auth
 
 ## Free Explorer (current configuration)
 
-- Free: Prologue (awaiting master) and Chapter One: Signal Lost (published excerpt).
+- Free: Prologue (6 pages) and Chapter One: Signal Lost (14 pages), both complete and published.
 - Chapters Two to Six: paid, 3-page preview, three editions. They are `draft` until masters are approved.
 - Embers do not unlock paid chapters (`emberUnlockCost` absent on every chapter).
 - Free for everyone, always: imports, the reader, Codex, Spoiler Shield, discovery, Embers.

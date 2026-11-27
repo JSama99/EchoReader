@@ -5,8 +5,8 @@ import type { CodexEntry, CypherComment, Fragment } from '@/domain/types';
  * Approved story material only. Never add Elementals, histories or canon here
  * that the creator has not published.
  *
- * Placeholder (see docs/CONTENT.md): Codex line placement, Fragment I
- * placement, and every Cypher comment (sample discussion, labeled in the UI).
+ * Codex reveals and Fragment I are placed on the Chapter One master (pages 3
+ * and 14). Every Cypher comment is sample discussion, labeled in the UI.
  */
 
 const P = (chapter: number, page: number, panel: number) => ({ chapter, page, panel });
@@ -18,11 +18,11 @@ export const codex: CodexEntry[] = [
     kind: 'lore',
     name: 'The Pulse',
     tags: ['Phenomenon', 'Atlanta'],
-    firstSeen: P(1, 0, 0),
+    firstSeen: P(1, 2, 0),
     lines: [
-      { text: 'A rhythm that rippled through the sacred and the mundane alike: MARTA, Sweet Auburn, Ebenezer, the studios.', revealAt: P(1, 0, 0) },
-      { text: 'At Ebenezer the hour bell rang as always, but its echo came back wrong, with another note hidden beneath it.', revealAt: P(1, 0, 3) },
-      { text: 'Most folks heard noise. The real city was tuning itself.', revealAt: P(1, 0, 6) },
+      { text: 'A rhythm that rippled through the sacred and the mundane alike: MARTA, Sweet Auburn, Ebenezer, the studios.', revealAt: P(1, 2, 0) },
+      { text: 'At Ebenezer the hour bell rang as always, but its echo came back wrong, with another note hidden beneath it.', revealAt: P(1, 2, 3) },
+      { text: 'Most folks heard noise. The real city was tuning itself.', revealAt: P(1, 2, 6) },
     ],
   },
   {
@@ -31,10 +31,10 @@ export const codex: CodexEntry[] = [
     kind: 'character',
     name: 'Malik Blaze',
     tags: ['Phoenix Elemental', 'Protagonist'],
-    firstSeen: P(1, 1, 1),
+    firstSeen: P(1, 13, 2),
     lines: [
-      { text: 'Phoenix Elemental. The flame answers when the city finds its rhythm.', revealAt: P(1, 1, 1) },
-      { text: 'Stands with Ayana Storm, fire beside lightning, at the end of Chapter One.', revealAt: P(1, 1, 3) },
+      { text: 'Phoenix Elemental. The flame answers when the city finds its rhythm.', revealAt: P(1, 13, 2) },
+      { text: 'Stands with Ayana Storm, fire beside lightning, at the end of Chapter One.', revealAt: P(1, 13, 4) },
       { text: 'His brother is Maestro Re:Verse.', revealAt: P(2, 0, 0) },
     ],
     bondIds: ['ayana-storm'],
@@ -45,8 +45,8 @@ export const codex: CodexEntry[] = [
     kind: 'character',
     name: 'Ayana Storm',
     tags: ['Storm Elemental', 'Protagonist'],
-    firstSeen: P(1, 1, 2),
-    lines: [{ text: 'Storm Elemental. Her spiral pendant glows the same blue as the lightning she calls.', revealAt: P(1, 1, 2) }],
+    firstSeen: P(1, 13, 3),
+    lines: [{ text: 'Storm Elemental. Her spiral pendant glows the same blue as the lightning she calls.', revealAt: P(1, 13, 3) }],
     bondIds: ['malik-blaze'],
   },
   {
@@ -55,16 +55,16 @@ export const codex: CodexEntry[] = [
     kind: 'glyph',
     name: 'The Flame Sigil',
     tags: ['Glyph'],
-    firstSeen: P(1, 1, 1),
+    firstSeen: P(1, 13, 2),
     lines: [
-      { text: 'The spiral mark that burns along Malik’s forearm when the power rises.', revealAt: P(1, 1, 1) },
-      { text: 'Its full meaning is written across the nine manuscript fragments.', revealAt: P(1, 1, 3) },
+      { text: 'The spiral mark that burns along Malik’s forearm when the power rises.', revealAt: P(1, 13, 2) },
+      { text: 'Its full meaning is written across the nine manuscript fragments.', revealAt: P(1, 13, 4) },
     ],
   },
 ];
 
 export const fragments: Fragment[] = [
-  { id: 'fragment-1', ordinal: 1, title: 'The True Signal', seriesId: 'flame-sigil', foundAt: P(1, 1, 3) },
+  { id: 'fragment-1', ordinal: 1, title: 'The True Signal', seriesId: 'flame-sigil', foundAt: P(1, 13, 4) },
 ];
 
 /**
@@ -74,7 +74,7 @@ export const fragments: Fragment[] = [
 export const cypher: CypherComment[] = [
   {
     id: 'c-1',
-    panelKey: 'fs1-p04:bell',
+    panelKey: 'fs1-p03:bell',
     author: 'kemet.kid',
     isCreator: false,
     tag: 'theory',
@@ -84,7 +84,7 @@ export const cypher: CypherComment[] = [
     replies: [
       {
         id: 'c-1-r1',
-        panelKey: 'fs1-p04:bell',
+        panelKey: 'fs1-p03:bell',
         author: 'J-Sama',
         isCreator: true,
         body: 'Listen closer. The city keeps time.',
@@ -95,7 +95,7 @@ export const cypher: CypherComment[] = [
   },
   {
     id: 'c-2',
-    panelKey: 'fs1-p04:bell',
+    panelKey: 'fs1-p03:bell',
     author: 'peachtreeprophet',
     isCreator: false,
     body: 'Wait till you see who rings it in chapter 2.',
@@ -105,7 +105,7 @@ export const cypher: CypherComment[] = [
   },
   {
     id: 'c-3',
-    panelKey: 'fs1-p04:bell',
+    panelKey: 'fs1-p03:bell',
     author: 'westend.wren',
     isCreator: false,
     tag: 'hype',
@@ -115,7 +115,7 @@ export const cypher: CypherComment[] = [
   },
   {
     id: 'c-4',
-    panelKey: 'fs1-end:true-signal',
+    panelKey: 'fs1-p14:true-signal',
     author: 'westend.wren',
     isCreator: false,
     tag: 'art',

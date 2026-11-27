@@ -20,6 +20,8 @@
 
 Baseline before changes: 57/57 (tag `v0.1.0`).
 
+**Chapter One master (2026-11-27):** 141 Jest tests pass. In the browser, all 14 pages and 83 panels stepped in order in Sigil View, Fragment I triggered on reaching the last panel, and the three page-14 glyphs opened Malik Blaze, The Flame Sigil and Ayana Storm. No console errors.
+
 **Prologue addition (2026-11-27):** 140 Jest tests pass. In the browser, all 32 Prologue panels stepped in order across 6 pages in Sigil View, with every page image loading and zero console errors.
 
 ## Browser QA (web export, Chrome, 430×900 @2x and 1366×1024)
@@ -60,7 +62,7 @@ Defect found and fixed during QA: the catalog reader selected a freshly built ob
 
 | # | Issue | Type |
 |---|---|---|
-| 1 | No approved masters for Chapters Two to Six; Chapter One is a 2-page excerpt. The Prologue is complete | Blocked on content |
+| 1 | No approved masters for Chapters Two to Six. The Prologue and Chapter One are complete | Blocked on content |
 | 2 | Real purchases need App Store Connect and Play Console products, IAP integration and server receipt verification | Blocked on store accounts |
 | 3 | Accounts, sync and remote content need a Supabase project and keys | Blocked on backend provisioning |
 | 4 | Production manifest-signing key not created (`npm run keygen`) | Owner action |

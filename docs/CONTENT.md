@@ -11,17 +11,17 @@ Prologue · Chapter One, Signal Lost · Chapter Two, White Silence · Chapter Th
 | `assets/content/flame-sigil/fs_cover.jpg` | Home hero, shelves, Discover |
 | `assets/content/flame-sigil/malik_portrait.jpg` | Codex portrait for Malik Blaze |
 | `assets/content/flame-sigil/prologue_p01.png` … `prologue_p06.png` | Prologue, pages 1–6 (complete; added 2026-11-27) |
-| `assets/content/flame-sigil/ch1_p04.jpg` | Chapter One, page 4 |
-| `assets/content/flame-sigil/ch1_p22_finale.jpg` | Chapter One, final page |
+| `assets/content/flame-sigil/ch1_p01.png` … `ch1_p14.png` | Chapter One: Signal Lost, pages 1–14 (complete website masters; added 2026-11-27) |
 
-Prologue panel boxes were measured from the pure-white gutters in each page (32 panels). Page 1 is a single splash, framed as five reading beats: the full scene, the first balloon, the timeline screen, the second balloon and the closing caption. Page 3's slanted top border is split into the elder and the burning city. Chapter One page 4's geometry was measured from the art (gutters at y ≈ 327, 614, 909 and 1164 px). Glyph rects on the finale were overlaid on the art and checked visually. Artwork is never cropped, resized or regenerated; the app displays the original files at their original aspect ratios.
+Prologue panel boxes were measured from the pure-white gutters in each page (32 panels). Page 1 is a single splash, framed as five reading beats: the full scene, the first balloon, the timeline screen, the second balloon and the closing caption. Page 3's slanted top border is split into the elder and the burning city. Chapter One's 83 panels were authored the same way against a pixel grid; slanted borders are framed by bounding boxes. Page 3's layout is identical to the v0.1 excerpt page and kept its geometry. Glyph rects on page 14 were checked at full resolution.
 
 ## Placeholder or pending (marked in the data)
 
-- **Chapter One is an excerpt** (`contentStatus: "excerpt"`): only page 4 and the finale exist. The v0.1 title "The Verse Begins Again" was replaced with the approved title "Signal Lost".
+- **Chapter One: Signal Lost is complete**: 14 pages from the website masters. The two v0.1 excerpt pages were retired; the old page 4 art is kept only as a test fixture (`__tests__/fixtures/sample-page.jpg`).
 - **Chapters Two to Six** are `awaiting-master` with `availability: draft`. They have no pages, dates or descriptions until approved masters arrive.
 - **The Prologue** is complete and free. It has no Echo glyphs or Codex entries yet; those need creator-approved lore.
-- **Fragment I** ("The True Signal") is placed on the finale's last panel. Fragments II–IX are not placed.
+- **Echo glyphs:** the Ebenezer bell on page 3 (The Pulse); on page 14, Malik's phoenix jacket (Malik Blaze), his burning forearm (The Flame Sigil) and Ayana's pendant (Ayana Storm). Codex reveals follow those pages.
+- **Fragment I** ("The True Signal") is found on page 14's closing caption. Fragments II–IX are not placed.
 - **Malik's sealed line** ("His brother is Maestro Re:Verse") reveals at Chapter Two.
 - **Cypher comments** in `src/content/lore.ts` are sample discussion and are labeled as such in the UI.
 - **Credits** are "Creator: J-Sama" and "Publisher: TalonSight Technologies". Add artist and letterer credits; credits are part of the publication hash.

@@ -8,8 +8,7 @@ import { DEFAULT_LIMITS, ImportError, type ImportLimits } from '@/domain/import/
 import { classify, commonTitle, importCbz, importImages, type PageSink, type PickedFile } from '@/domain/import/pipeline';
 import { imageSize, sniff } from '@/domain/import/sniff';
 
-const root = join(__dirname, '..');
-const JPEG = new Uint8Array(readFileSync(join(root, 'assets/content/flame-sigil/ch1_p04.jpg')));
+const JPEG = new Uint8Array(readFileSync(join(__dirname, 'fixtures/sample-page.jpg')));
 const NOW = Date.parse('2026-11-26T12:00:00Z');
 
 /** Minimal PNG header (signature + IHDR); enough for sniffing and sizing. */

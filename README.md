@@ -10,7 +10,7 @@
 | --- | --- |
 | **Free personal library** | Import **CBZ, JPEG, PNG, WebP** (verified) and **PDF** (native renderer, needs a device build). Collections, favorites, metadata editing, cover choice, removal. Files never leave the device; no account needed. |
 | **Reading** | Scroll and Pages for everything; **Sigil View** for publications with authored panels. Fit page/width/height, pinch and double-tap zoom, LTR/RTL, tablet spreads, dark/light background, bookmarks, history, Reduce Motion support, manual panel controls. |
-| **Flame Sigil** | Approved catalog (Prologue to Chapter Six) from a **signed publication manifest**. Chapter One is free (an excerpt: the pages that exist so far). Later chapters show approved titles and await their masters. |
+| **Flame Sigil** | Approved catalog (Prologue to Chapter Six) from a **signed publication manifest**. The Prologue (6 pages) and Chapter One: Signal Lost (14 pages) are complete and free. Later chapters show approved titles and await their masters. |
 | **Echo Layer · Spoiler Shield · Nine Fragments** | Preserved from v0.1 and now gated by publication capabilities. Glyph discoveries earn Embers. |
 | **Commerce** | Publisher-controlled access (10 states), Standard / Collector / Legendary editions ($4.99 / $9.99 / $19.99, all configurable), idempotent purchase ledger, refunds, restore. **Sandbox purchases only**; real store billing isn't built. |
 | **Embers** | Rule-based, idempotent, capped, non-transferable rewards. Not money; they never unlock paid chapters unless a publisher opts in per chapter. |

@@ -49,12 +49,16 @@ describe('approved Flame Sigil catalog', () => {
     ]);
   });
 
-  it('marks what is real: the Prologue is complete, Chapter One is an excerpt, the rest await masters', () => {
+  it('marks what is real: the Prologue and Chapter One are complete, the rest await masters', () => {
     const prologue = getChapter('flame-sigil-0')!;
     expect(prologue.contentStatus).toBe('complete');
     expect(prologue.pages.map((p) => p.id)).toEqual(['fs0-p01', 'fs0-p02', 'fs0-p03', 'fs0-p04', 'fs0-p05', 'fs0-p06']);
     expect(prologue.pages.map((p) => p.panels.length)).toEqual([5, 6, 6, 5, 5, 5]);
-    expect(getChapter('flame-sigil-1')!.contentStatus).toBe('excerpt');
+    const one = getChapter('flame-sigil-1')!;
+    expect(one.contentStatus).toBe('complete');
+    expect(one.pages.map((p) => p.label)).toEqual(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14']);
+    expect(one.pages.map((p) => p.id)).toEqual(Array.from({ length: 14 }, (_, i) => `fs1-p${String(i + 1).padStart(2, '0')}`));
+    expect(one.pages.every((p) => p.panels.length >= 5)).toBe(true);
     for (const n of [2, 3, 4, 5, 6]) {
       const ch = getChapter(`flame-sigil-${n}`)!;
       expect(ch.contentStatus).toBe('awaiting-master');
@@ -101,6 +105,22 @@ describe('approved Flame Sigil catalog', () => {
       for (const l of e.lines) expect(comparePositions(l.revealAt, e.firstSeen)).toBeGreaterThanOrEqual(0);
       for (const b of e.bondIds ?? []) expect(codex.some((x) => x.id === b)).toBe(true);
     }
+  });
+
+  it('Echo glyphs, Codex reveals and Fragment I sit on the panels they describe', () => {
+    const one = getChapter('flame-sigil-1')!;
+    const at = (page: number, panel: number) => one.pages[page].panels[panel].id;
+    expect(one.pages[2].glyphs.map((g) => [g.id, at(2, g.panel)])).toEqual([['g-bell-echo', 'bell']]);
+    expect(one.pages[13].glyphs.map((g) => [g.id, at(13, g.panel)])).toEqual([
+      ['g-phoenix-sleeve', 'malik'],
+      ['g-forearm-sigil', 'malik'],
+      ['g-storm-pendant', 'ayana'],
+    ]);
+    const frag = fragments.find((f) => f.id === 'fragment-1')!;
+    expect(at(frag.foundAt.page, frag.foundAt.panel)).toBe('true-signal');
+    // Every glyph's Codex entry is discovered no later than the glyph itself.
+    for (const [i, p] of one.pages.entries())
+      for (const g of p.glyphs) expect(comparePositions(codex.find((e) => e.id === g.codexEntryId)!.firstSeen, { chapter: 1, page: i, panel: g.panel })).toBeLessThanOrEqual(0);
   });
 
   it('fragments are unique and ordinals are 1..9', () => {
@@ -196,13 +216,13 @@ describe('publication manifest', () => {
   it('reports precise errors for malformed manifests', () => {
     const m = clone() as unknown as Record<string, unknown> & PublicationManifest;
     m.version = 0;
-    m.publications[1].pages[0].glyphs[0].panel = 99;
+    m.publications[1].pages[2].glyphs[0].panel = 99;
     m.publications[3].editions[0].includesReading = false as true;
     m.publications[4].chapterNumber = 1;
     const r = validateManifest(m);
     expect(!r.ok && r.errors).toEqual([
       'version: positive integer required',
-      'publications[1].pages[0].glyphs[0].panel: must reference a panel',
+      'publications[1].pages[2].glyphs[0].panel: must reference a panel',
       'publications[3].editions[0].includesReading: every edition must include the readable chapter',
       'publications[4].chapterNumber: duplicate',
     ]);
@@ -231,12 +251,11 @@ describe('POW integrity for bundled pages', () => {
     for (const ch of allChapters()) for (const p of ch.pages) expect(pageImages[p.id]).toBeDefined();
   });
 
-  it('the app hash implementation reproduces the publication hash (unchanged since v0.1)', async () => {
+  it('the app hash implementation reproduces the publication hash', async () => {
     const rec = ledgerFor('flame-sigil-1')!;
     expect(await computeChapterHash(sha256, { seriesId: 'flame-sigil', chapterId: 'flame-sigil-1', credits: pub.credits, pageHashes: rec.pageHashes })).toBe(
       rec.chapterHash,
     );
-    expect(rec.chapterHash).toBe('2c8f81b5022d9c68490138a47190eb86a9cba60c415744cf091711bfc4e3ab4a');
   });
 
   it('the bundled page bytes verify against the manifest record', async () => {
