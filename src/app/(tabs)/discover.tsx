@@ -100,6 +100,17 @@ export default function Discover() {
               onPress={live ? () => router.push(`/series/${s.id}`) : undefined}
               accessibilityRole={live ? 'button' : 'text'}
               style={styles.row}
+              trailing={
+                live ? (
+                  <Button
+                    kind={following ? 'ghost' : 'bone'}
+                    label={following ? 'Following' : 'Follow'}
+                    height={34}
+                    style={{ paddingHorizontal: 14 }}
+                    onPress={() => dispatch({ type: 'toggleFollow', seriesId: s.id })}
+                  />
+                ) : undefined
+              }
             >
               <View style={styles.thumb}>
                 {coverImages[s.id] ? (
@@ -114,15 +125,6 @@ export default function Discover() {
                   {live ? `${chs} publications` : s.id === 'flame-sigil-origin' ? `Fragments ${frags.count}/9` : s.releaseLabel}
                 </T>
               </View>
-              {live && (
-                <Button
-                  kind={following ? 'ghost' : 'bone'}
-                  label={following ? 'Following' : 'Follow'}
-                  height={34}
-                  style={{ paddingHorizontal: 14 }}
-                  onPress={() => dispatch({ type: 'toggleFollow', seriesId: s.id })}
-                />
-              )}
             </Row>
           );
         })}

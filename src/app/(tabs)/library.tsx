@@ -204,7 +204,9 @@ export default function Library() {
                   router.push(`/read/${encodeURIComponent(b.chapterId)}`);
                 }}
                 accessibilityRole="button"
+                accessibilityLabel={`${title}, page ${label}`}
                 style={styles.row}
+                trailing={<Button kind="ghost" label="Remove" height={32} onPress={() => dispatch({ type: 'removeBookmark', id: b.id })} />}
               >
                 <View style={{ flex: 1 }}>
                   <T v="body" style={{ color: color.bone }} numberOfLines={1}>
@@ -214,7 +216,6 @@ export default function Library() {
                     Page {label}
                   </T>
                 </View>
-                <Button kind="ghost" label="Remove" height={32} onPress={() => dispatch({ type: 'removeBookmark', id: b.id })} />
               </Row>
             );
           })}
