@@ -9,7 +9,7 @@ import { fragments, getChapter, getSeries } from '@/content/catalog';
 import { has, IMPORTED_CAPABILITIES, modesFor, supportedMode } from '@/domain/capabilities';
 import { canOpen, canReadFully, readablePageCount } from '@/domain/commerce/access';
 import { newlyFound } from '@/domain/fragments';
-import { chapterFromLocal, isLocalKey, localIdOf } from '@/domain/library';
+import { chapterFromLocal, isLocalKey, localIdOf, chapterName } from '@/domain/library';
 import { resolveMode } from '@/domain/reading-mode';
 import { chapterProgress, nextStep, prevStep, type Step } from '@/domain/sigil';
 import type { Capability, Chapter, GlyphHotspot, ReadingDirection, ReadingMode, Series } from '@/domain/types';
@@ -258,8 +258,7 @@ function ReaderView({
             </IconButton>
             <View style={{ flex: 1, gap: 2 }}>
               <T v="bodyStrong" numberOfLines={1}>
-                {chapter.label ? `${chapter.label} · ` : ''}
-                {chapter.title}
+                {chapterName(chapter)}
               </T>
               <T v="mono" style={{ fontSize: 11 }} numberOfLines={1}>
                 {format ? `${format.toUpperCase()} · ` : `${series.title.toUpperCase()} · `}PAGE {page?.label}

@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { allEditions, getChapter, getSeries } from '@/content/catalog';
 import { formatMoney } from '@/domain/commerce/ledger';
 import type { ReadingMode } from '@/domain/types';
+import { chapterName } from '@/domain/library';
 import { queued } from '@/services/analytics';
 import { commerce } from '@/services/commerce';
 import { accountsStatus } from '@/services/identity';
@@ -130,7 +131,7 @@ export default function Profile() {
             <View key={tx.id} style={styles.txRow}>
               <View style={{ flex: 1, gap: 2 }}>
                 <T v="body" style={{ color: color.bone }} numberOfLines={1}>
-                  {ch ? `${ch.label} · ${ch.title}` : tx.chapterId}
+                  {ch ? chapterName(ch) : tx.chapterId}
                 </T>
                 <T v="mono" style={{ fontSize: 10 }}>
                   {(ed?.title ?? tx.editionId).toUpperCase()} · {formatMoney(tx.amount)} · {tx.status.toUpperCase()}

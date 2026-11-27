@@ -1,8 +1,8 @@
 {
   "schema": "echoreader.manifest/1",
   "manifestId": "talonsight/flame-sigil",
-  "version": 1,
-  "issuedAt": "2026-11-26T00:00:00.000Z",
+  "version": 2,
+  "issuedAt": "2026-11-27T00:00:00.000Z",
   "publisher": {
     "id": "talonsight",
     "name": "TalonSight Technologies"
@@ -32,7 +32,7 @@
       "label": "Prologue",
       "title": "Prologue",
       "spoilerLevel": "none",
-      "contentStatus": "awaiting-master",
+      "contentStatus": "complete",
       "direction": "ltr",
       "capabilities": [
         "standard",
@@ -44,7 +44,8 @@
         "verification"
       ],
       "availability": {
-        "status": "draft"
+        "status": "published",
+        "publishedAt": "2026-11-27T00:00:00.000Z"
       },
       "access": {
         "base": "free",
@@ -64,11 +65,372 @@
           "name": "TalonSight Technologies"
         }
       ],
-      "pages": [],
-      "pageCount": 0,
+      "pages": [
+        {
+          "id": "fs0-p01",
+          "label": "1",
+          "asset": "bundled:fs0-p01",
+          "panels": [
+            {
+              "id": "splash",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1,
+                "h": 1
+              }
+            },
+            {
+              "id": "archive",
+              "rect": {
+                "x": 0.1668,
+                "y": 0.122,
+                "w": 0.367,
+                "h": 0.3506
+              }
+            },
+            {
+              "id": "timeline",
+              "rect": {
+                "x": 0.5671,
+                "y": 0.1067,
+                "w": 0.417,
+                "h": 0.3963
+              }
+            },
+            {
+              "id": "rhythm-gate",
+              "rect": {
+                "x": 0.4504,
+                "y": 0.4573,
+                "w": 0.4754,
+                "h": 0.343
+              }
+            },
+            {
+              "id": "descendant",
+              "rect": {
+                "x": 0,
+                "y": 0.6555,
+                "w": 1,
+                "h": 0.3445
+              }
+            }
+          ],
+          "glyphs": [],
+          "width": 1199,
+          "height": 1312,
+          "sha256": "10bb307727fab86153cd72fc8677e0b505518187ba0571fe624f20e58a243e8f",
+          "bytes": 3040849
+        },
+        {
+          "id": "fs0-p02",
+          "label": "2",
+          "asset": "bundled:fs0-p02",
+          "panels": [
+            {
+              "id": "atlantis",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1,
+                "h": 0.2729
+              }
+            },
+            {
+              "id": "sound-is-code",
+              "rect": {
+                "x": 0,
+                "y": 0.2759,
+                "w": 0.5288,
+                "h": 0.2424
+              }
+            },
+            {
+              "id": "network",
+              "rect": {
+                "x": 0.5338,
+                "y": 0.2759,
+                "w": 0.4662,
+                "h": 0.2424
+              }
+            },
+            {
+              "id": "carried-forward",
+              "rect": {
+                "x": 0,
+                "y": 0.5213,
+                "w": 0.4612,
+                "h": 0.221
+              }
+            },
+            {
+              "id": "gate-city",
+              "rect": {
+                "x": 0.4654,
+                "y": 0.5213,
+                "w": 0.5346,
+                "h": 0.221
+              }
+            },
+            {
+              "id": "stirring",
+              "rect": {
+                "x": 0,
+                "y": 0.7454,
+                "w": 1,
+                "h": 0.2546
+              }
+            }
+          ],
+          "glyphs": [],
+          "width": 1199,
+          "height": 1312,
+          "sha256": "165a130f6f43ea7f5547921a4f8747b4d94da0b42cfe914824f252ccdb2e4089",
+          "bytes": 3313338
+        },
+        {
+          "id": "fs0-p03",
+          "label": "3",
+          "asset": "bundled:fs0-p03",
+          "panels": [
+            {
+              "id": "elder",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 0.5088,
+                "h": 0.2797
+              }
+            },
+            {
+              "id": "fire-1864",
+              "rect": {
+                "x": 0.367,
+                "y": 0,
+                "w": 0.633,
+                "h": 0.2797
+              }
+            },
+            {
+              "id": "ruins",
+              "rect": {
+                "x": 0,
+                "y": 0.2835,
+                "w": 0.4904,
+                "h": 0.2622
+              }
+            },
+            {
+              "id": "rebuilt",
+              "rect": {
+                "x": 0.4979,
+                "y": 0.2835,
+                "w": 0.5021,
+                "h": 0.2622
+              }
+            },
+            {
+              "id": "embers",
+              "rect": {
+                "x": 0,
+                "y": 0.5495,
+                "w": 1,
+                "h": 0.1997
+              }
+            },
+            {
+              "id": "rekindling",
+              "rect": {
+                "x": 0,
+                "y": 0.753,
+                "w": 1,
+                "h": 0.247
+              }
+            }
+          ],
+          "glyphs": [],
+          "width": 1199,
+          "height": 1312,
+          "sha256": "1c69935a81340f5a3c92d00cf3c1c493dd39cc711d617fc6e1f1b359aeaed8a9",
+          "bytes": 3659821
+        },
+        {
+          "id": "fs0-p04",
+          "label": "4",
+          "asset": "bundled:fs0-p04",
+          "panels": [
+            {
+              "id": "skyline",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1,
+                "h": 0.2104
+              }
+            },
+            {
+              "id": "beneath",
+              "rect": {
+                "x": 0,
+                "y": 0.2142,
+                "w": 1,
+                "h": 0.2904
+              }
+            },
+            {
+              "id": "sigil-wall",
+              "rect": {
+                "x": 0,
+                "y": 0.5091,
+                "w": 0.442,
+                "h": 0.2348
+              }
+            },
+            {
+              "id": "hidden-network",
+              "rect": {
+                "x": 0.4462,
+                "y": 0.5091,
+                "w": 0.5538,
+                "h": 0.2348
+              }
+            },
+            {
+              "id": "street",
+              "rect": {
+                "x": 0,
+                "y": 0.7477,
+                "w": 1,
+                "h": 0.2523
+              }
+            }
+          ],
+          "glyphs": [],
+          "width": 1199,
+          "height": 1312,
+          "sha256": "affebcc7a9bfddff797a492fc31f41f4818827d72dc8b59e13960a372512e6e3",
+          "bytes": 3681378
+        },
+        {
+          "id": "fs0-p05",
+          "label": "5",
+          "asset": "bundled:fs0-p05",
+          "panels": [
+            {
+              "id": "memory",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1,
+                "h": 0.1897
+              }
+            },
+            {
+              "id": "stirs",
+              "rect": {
+                "x": 0,
+                "y": 0.1933,
+                "w": 1,
+                "h": 0.1776
+              }
+            },
+            {
+              "id": "echoes",
+              "rect": {
+                "x": 0,
+                "y": 0.3745,
+                "w": 1,
+                "h": 0.189
+              }
+            },
+            {
+              "id": "heartbeat",
+              "rect": {
+                "x": 0,
+                "y": 0.5663,
+                "w": 1,
+                "h": 0.194
+              }
+            },
+            {
+              "id": "signal",
+              "rect": {
+                "x": 0,
+                "y": 0.7632,
+                "w": 1,
+                "h": 0.2368
+              }
+            }
+          ],
+          "glyphs": [],
+          "width": 1122,
+          "height": 1402,
+          "sha256": "2ea18bb51d80f1a9f418adda681450dfe239771bfcfc877f3f6fc9c5328b87ca",
+          "bytes": 3648293
+        },
+        {
+          "id": "fs0-p06",
+          "label": "6",
+          "asset": "bundled:fs0-p06",
+          "panels": [
+            {
+              "id": "city-slept",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1,
+                "h": 0.183
+              }
+            },
+            {
+              "id": "thum",
+              "rect": {
+                "x": 0,
+                "y": 0.1872,
+                "w": 1,
+                "h": 0.1775
+              }
+            },
+            {
+              "id": "awakens",
+              "rect": {
+                "x": 0,
+                "y": 0.3674,
+                "w": 1,
+                "h": 0.1692
+              }
+            },
+            {
+              "id": "ignites",
+              "rect": {
+                "x": 0,
+                "y": 0.5407,
+                "w": 1,
+                "h": 0.1761
+              }
+            },
+            {
+              "id": "journey",
+              "rect": {
+                "x": 0,
+                "y": 0.7203,
+                "w": 1,
+                "h": 0.2797
+              }
+            }
+          ],
+          "glyphs": [],
+          "width": 1086,
+          "height": 1448,
+          "sha256": "d8bbeec11c6707e2b181905eed59755060655ed7e08aa7b0736015825ecf2d14",
+          "bytes": 3610031
+        }
+      ],
+      "pageCount": 6,
       "integrity": {
         "algorithm": "sha256-canonical-v1",
-        "publicationHash": null
+        "publicationHash": "f967c65a959bab89dd424672bb7979bf3e3e89ac32af0aa72708d06e7c35cb45"
       }
     },
     {
@@ -936,6 +1298,6 @@
   "signature": {
     "alg": "ed25519",
     "keyId": "talonsight-dev-1",
-    "value": "3efd79ff2345701c2a51af993f98ed14facd94aa82ed2d1b4b3c1f317903ff75be9b8ec5d9925728d54dfa2fc3fcb81166d25bb3f6748be47e8e3c0dea403a0a"
+    "value": "f5e38b6128fe50cf07d034e0b80c7f80db058a720778dcb1d5ce530a850b8e366dd2ce3cfc6e74be2d1dc15afb9f6e07e06782fb400210e02bd77f9ef2e5000d"
   }
 }

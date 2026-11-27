@@ -20,7 +20,7 @@ Branch `v0.2`, based on baseline tag `v0.1.0`. 101 files changed (+9,011 / −1,
 1. **The reader is free and standalone.** Secure import of CBZ, images and PDF; a personal library with shelves, collections, favorites, metadata editing, bookmarks and history; reading controls (fit modes, zoom, light background, Reduce Motion, panel buttons). It works offline with no account.
 2. **The core is decoupled from Flame Sigil.** Publications declare capabilities; imported comics need no metadata and never see Sigil, Echo or Cypher features.
 3. **The 24-hour rule is replaced** by publisher-controlled availability, policies and editions, with entitlements and collectibles as separate models (10 access states).
-4. **The catalog comes from signed, versioned manifests** with page hashes, publication hashes, edition and publisher ids, and ed25519 issuer verification. The approved Flame Sigil catalog replaces the invented v0.1 title and dates.
+4. **The catalog comes from signed, versioned manifests** with page hashes, publication hashes, edition and publisher ids, and ed25519 issuer verification. The approved Flame Sigil catalog replaces the invented v0.1 title and dates. The complete six-page Prologue (32 authored panels) was added on 2026-11-27.
 5. **Embers became a rule-based, idempotent, capped loyalty system.** They are non-transferable, and v1 balances migrated exactly.
 6. **Vault, new navigation** (Home · Discover · Library · Vault · Profile), purchase history, privacy controls, achievements.
 7. **Backend foundation**: a Supabase schema with row-level security executed and attacked in Postgres, plus server-side page authorization proven identical to the app's.
@@ -96,7 +96,7 @@ No unintended regressions were found by the test suites or browser QA.
 **Not production-ready.** The free reader and Chapter One could ship to TestFlight and Play internal testing once verified on devices. A public commercial launch is blocked by:
 
 1. On-device verification (dev builds on iPhone, iPad, Android) including the PDF module, pinch zoom and screen readers.
-2. Approved chapter masters.
+2. Approved masters for Chapters One (full) through Six.
 3. Store products, IAP / Play Billing integration and server receipt verification.
 4. A Supabase project (auth, sync, content delivery) and a production signing key.
 5. Privacy policy and store privacy labels matching the analytics design.

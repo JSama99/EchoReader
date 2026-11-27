@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { allChapters, getSeries, ledgerFor } from '@/content/catalog';
-import { localKey } from '@/domain/library';
+import { localKey, chapterName } from '@/domain/library';
 import { useReader } from '@/state/store';
 import { color, radius } from '@/theme/tokens';
 import { Back, Check } from '@/ui/icons';
@@ -51,7 +51,7 @@ export default function Downloads() {
           <Row key={c.id} style={styles.row} accessibilityLabel={`${c.label}, ${mb(bytes)}, available offline`}>
             <View style={{ flex: 1, gap: 2 }}>
               <T v="body" style={{ color: color.bone }}>
-                {getSeries(c.seriesId)?.title} · {c.label} · {c.title}
+                {getSeries(c.seriesId)?.title} · {chapterName(c)}
               </T>
               <T v="caption" style={{ fontSize: 12 }}>
                 {mb(bytes)} · {finished.includes(c.id) ? 'Read' : 'Unread'}

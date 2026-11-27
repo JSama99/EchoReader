@@ -18,6 +18,7 @@ import {
 } from '@/content/catalog';
 import manifestJson from '@/content/manifests/flame-sigil.json';
 import source from '../content-src/flame-sigil.json';
+import { pageImages } from '@/content/images';
 import { TRUSTED_ISSUERS } from '@/content/trust';
 import { imageSize } from '@/domain/import/sniff';
 import { signingPayload, validateManifest, type PublicationManifest } from '@/domain/manifest';
@@ -48,9 +49,13 @@ describe('approved Flame Sigil catalog', () => {
     ]);
   });
 
-  it('marks what is real: Chapter One is an excerpt, the rest await masters', () => {
+  it('marks what is real: the Prologue is complete, Chapter One is an excerpt, the rest await masters', () => {
+    const prologue = getChapter('flame-sigil-0')!;
+    expect(prologue.contentStatus).toBe('complete');
+    expect(prologue.pages.map((p) => p.id)).toEqual(['fs0-p01', 'fs0-p02', 'fs0-p03', 'fs0-p04', 'fs0-p05', 'fs0-p06']);
+    expect(prologue.pages.map((p) => p.panels.length)).toEqual([5, 6, 6, 5, 5, 5]);
     expect(getChapter('flame-sigil-1')!.contentStatus).toBe('excerpt');
-    for (const n of [0, 2, 3, 4, 5, 6]) {
+    for (const n of [2, 3, 4, 5, 6]) {
       const ch = getChapter(`flame-sigil-${n}`)!;
       expect(ch.contentStatus).toBe('awaiting-master');
       expect(ch.pages).toEqual([]);
@@ -116,7 +121,7 @@ describe('publication manifest', () => {
     expect(validateManifest(manifest)).toEqual({ ok: true, manifest });
     const sig = verifyManifestSignature(manifest, TRUSTED_ISSUERS, true);
     expect(sig.status).toBe('trusted');
-    expect(provenanceOf('flame-sigil')).toMatchObject({ version: 1, source: 'bundled', signature: { status: 'trusted' } });
+    expect(provenanceOf('flame-sigil')).toMatchObject({ version: manifest.version, source: 'bundled', signature: { status: 'trusted' } });
   });
 
   it('a development key is not trusted when development keys are not allowed', () => {
@@ -143,14 +148,14 @@ describe('publication manifest', () => {
   it('install accepts only newer, valid, trusted manifests', () => {
     expect(installManifest(manifest, 'remote')).toEqual({ ok: false, reason: 'older' });
     const tampered = clone();
-    tampered.version = 2;
+    tampered.version = manifest.version + 1;
     expect(installManifest(tampered, 'remote')).toMatchObject({ ok: false, reason: 'untrusted' });
     expect(installManifest({ schema: 'nope' }, 'remote')).toMatchObject({ ok: false, reason: 'invalid' });
 
     // A newer manifest signed by an untrusted key is refused even if well-formed.
     const { privateKey } = generateKeyPairSync('ed25519');
     const v2 = clone();
-    v2.version = 2;
+    v2.version = manifest.version + 1;
     v2.signature = { alg: 'ed25519', keyId: 'talonsight-dev-1', value: sign(null, Buffer.from(signingPayload(v2)), privateKey).toString('hex') };
     expect(installManifest(v2, 'remote')).toMatchObject({ ok: false, reason: 'untrusted', detail: ['invalid'] });
   });
@@ -158,12 +163,12 @@ describe('publication manifest', () => {
   it('a newer manifest signed with the trusted key replaces the old one', () => {
     const key = createPrivateKey(readFileSync(join(root, 'scripts/dev-keys/talonsight-dev-1.pem')));
     const v2 = clone();
-    v2.version = 2;
+    v2.version = manifest.version + 1;
     v2.publications[2].availability = { status: 'scheduled', releaseAt: '2027-01-08T14:00:00.000Z' };
     v2.signature = { alg: 'ed25519', keyId: 'talonsight-dev-1', value: sign(null, Buffer.from(signingPayload(v2)), key).toString('hex') };
     // Remote manifests need a production-trusted key; in this (development) test run the dev key is trusted.
     expect(installManifest(v2, 'remote')).toEqual({ ok: true });
-    expect(provenanceOf('flame-sigil')?.version).toBe(2);
+    expect(provenanceOf('flame-sigil')?.version).toBe(manifest.version + 1);
     expect(installManifest(manifest, 'remote')).toEqual({ ok: false, reason: 'older' });
   });
 
@@ -206,15 +211,24 @@ describe('publication manifest', () => {
 
 describe('POW integrity for bundled pages', () => {
   const pub = manifest.publications.find((p) => p.publicationId === 'flame-sigil-1')!;
-  const files = (source.publications.find((p) => p.publicationId === 'flame-sigil-1')!.pages as { file: string }[]).map((p) => p.file);
+  const filesOf = (id: string) => (source.publications.find((p) => p.publicationId === id)!.pages as { file: string }[]).map((p) => p.file);
+  const files = filesOf('flame-sigil-1');
 
   it('the manifest records the real bytes, sizes and pixel dimensions of every page file', () => {
-    pub.pages.forEach((pg, i) => {
-      const bytes = readFileSync(join(root, files[i]));
-      expect(pg.sha256).toBe(createHash('sha256').update(bytes).digest('hex'));
-      expect(pg.bytes).toBe(bytes.length);
-      expect(imageSize(new Uint8Array(bytes))).toEqual({ width: pg.width, height: pg.height });
-    });
+    for (const p of manifest.publications) {
+      const paths = filesOf(p.publicationId);
+      expect(paths).toHaveLength(p.pages.length);
+      p.pages.forEach((pg, i) => {
+        const bytes = readFileSync(join(root, paths[i]));
+        expect(pg.sha256).toBe(createHash('sha256').update(bytes).digest('hex'));
+        expect(pg.bytes).toBe(bytes.length);
+        expect(imageSize(new Uint8Array(bytes))).toEqual({ width: pg.width, height: pg.height });
+      });
+    }
+  });
+
+  it('every bundled page has art registered with the app', () => {
+    for (const ch of allChapters()) for (const p of ch.pages) expect(pageImages[p.id]).toBeDefined();
   });
 
   it('the app hash implementation reproduces the publication hash (unchanged since v0.1)', async () => {

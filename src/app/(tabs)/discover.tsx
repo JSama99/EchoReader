@@ -9,6 +9,7 @@ import { allChapters, allSeries, chaptersOf, codex, getSeries } from '@/content/
 import { ACCESS_LABEL } from '@/domain/commerce/access';
 import { coverImages } from '@/content/images';
 import { discoveredEntries } from '@/domain/spoilers';
+import { chapterName } from '@/domain/library';
 import { accessOf, furthestOf, useCatalogVersion, useFragments, useNow } from '@/state/derived';
 import { track } from '@/services/analytics';
 import { useDispatch, useReader } from '@/state/store';
@@ -147,7 +148,7 @@ export default function Discover() {
                 >
                   <View style={{ flex: 1, gap: 3 }}>
                     <T v="bodyStrong">
-                      {c.label} · {c.title}
+                      {chapterName(c)}
                     </T>
                     <T v="caption">
                       {getSeries(c.seriesId)?.title} · {c.pages.length > 0 ? ACCESS_LABEL[a.kind] : 'Pages not yet released'}

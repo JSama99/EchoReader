@@ -7,6 +7,7 @@ import { ACHIEVEMENTS } from '@/domain/achievements';
 import { collectibleTrust } from '@/domain/commerce/ledger';
 import { toRoman } from '@/domain/fragments';
 import { shortHash } from '@/domain/pow';
+import { chapterName } from '@/domain/library';
 import { useEmbers, useFragments } from '@/state/derived';
 import { useReader } from '@/state/store';
 import { color, radius } from '@/theme/tokens';
@@ -87,7 +88,7 @@ export default function Vault() {
               <Row key={e.id} style={styles.row} onPress={() => router.push(`/editions/${e.chapterId}`)} accessibilityRole="button">
                 <View style={{ flex: 1, gap: 2 }}>
                   <T v="body" style={{ color: color.bone }}>
-                    {ch ? `${ch.label} · ${ch.title}` : e.chapterId}
+                    {ch ? chapterName(ch) : e.chapterId}
                   </T>
                   <T v="mono" style={{ fontSize: 10 }}>
                     {(ed?.title ?? 'Edition').toUpperCase()} · {e.status === 'active' ? 'READING LICENSE' : e.status.toUpperCase()}

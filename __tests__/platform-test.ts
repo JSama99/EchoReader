@@ -1,7 +1,7 @@
 import { earnedAchievements } from '@/domain/achievements';
 import { envelope, enqueue, pageBucket, sanitize } from '@/domain/analytics';
 import { has, IMPORTED_CAPABILITIES, modesFor, supportedMode } from '@/domain/capabilities';
-import { buildShelves, chapterFromLocal, localKey, pageProgress, type LocalPublication, type ShelfItem } from '@/domain/library';
+import { buildShelves, chapterFromLocal, chapterName, localKey, pageProgress, type LocalPublication, type ShelfItem } from '@/domain/library';
 import { chapterProgress, nextStep, prevStep } from '@/domain/sigil';
 import { fitPage } from '@/domain/fit';
 
@@ -76,6 +76,12 @@ describe('library shelves', () => {
     expect(s.imported.map((i) => i.key)).toEqual(['b', 'c', 'a']);
     expect(s.purchased.map((i) => i.key)).toEqual(['fs']);
     expect(s.collections[0].items.map((i) => i.key)).toEqual(['c']);
+  });
+
+  it('names chapters without repeating a label that equals the title', () => {
+    expect(chapterName({ label: 'Prologue', title: 'Prologue' })).toBe('Prologue');
+    expect(chapterName({ label: 'Chapter One', title: 'Signal Lost' })).toBe('Chapter One · Signal Lost');
+    expect(chapterName({ title: 'My Comic' })).toBe('My Comic');
   });
 
   it('computes page progress', () => {

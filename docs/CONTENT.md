@@ -10,15 +10,17 @@ Prologue · Chapter One, Signal Lost · Chapter Two, White Silence · Chapter Th
 | --- | --- |
 | `assets/content/flame-sigil/fs_cover.jpg` | Home hero, shelves, Discover |
 | `assets/content/flame-sigil/malik_portrait.jpg` | Codex portrait for Malik Blaze |
+| `assets/content/flame-sigil/prologue_p01.png` … `prologue_p06.png` | Prologue, pages 1–6 (complete; added 2026-11-27) |
 | `assets/content/flame-sigil/ch1_p04.jpg` | Chapter One, page 4 |
 | `assets/content/flame-sigil/ch1_p22_finale.jpg` | Chapter One, final page |
 
-Panel geometry on page 4 was measured from the art (gutters at y ≈ 327, 614, 909 and 1164 px). Glyph rects on the finale were overlaid on the art and checked visually. Artwork is never cropped, resized or regenerated; the app displays the original files at their original aspect ratios.
+Prologue panel boxes were measured from the pure-white gutters in each page (32 panels). Page 1 is a single splash, framed as five reading beats: the full scene, the first balloon, the timeline screen, the second balloon and the closing caption. Page 3's slanted top border is split into the elder and the burning city. Chapter One page 4's geometry was measured from the art (gutters at y ≈ 327, 614, 909 and 1164 px). Glyph rects on the finale were overlaid on the art and checked visually. Artwork is never cropped, resized or regenerated; the app displays the original files at their original aspect ratios.
 
 ## Placeholder or pending (marked in the data)
 
 - **Chapter One is an excerpt** (`contentStatus: "excerpt"`): only page 4 and the finale exist. The v0.1 title "The Verse Begins Again" was replaced with the approved title "Signal Lost".
-- **Prologue and Chapters Two to Six** are `awaiting-master` with `availability: draft`. They have no pages, dates or descriptions until approved masters arrive.
+- **Chapters Two to Six** are `awaiting-master` with `availability: draft`. They have no pages, dates or descriptions until approved masters arrive.
+- **The Prologue** is complete and free. It has no Echo glyphs or Codex entries yet; those need creator-approved lore.
 - **Fragment I** ("The True Signal") is placed on the finale's last panel. Fragments II–IX are not placed.
 - **Malik's sealed line** ("His brother is Maestro Re:Verse") reveals at Chapter Two.
 - **Cypher comments** in `src/content/lore.ts` are sample discussion and are labeled as such in the UI.

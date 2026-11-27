@@ -20,6 +20,8 @@
 
 Baseline before changes: 57/57 (tag `v0.1.0`).
 
+**Prologue addition (2026-11-27):** 140 Jest tests pass. In the browser, all 32 Prologue panels stepped in order across 6 pages in Sigil View, with every page image loading and zero console errors.
+
 ## Browser QA (web export, Chrome, 430×900 @2x and 1366×1024)
 
 24/24 checks pass on the sandbox build with **zero console errors**: onboarding copy, approved chapter list, no invented schedule copy, five tabs, CBZ import with ComicInfo, path-traversal archive refused, single-image import, detail page, imported pages rendering from IndexedDB, no Sigil/Echo features for imports, bookmark toggle, light theme and fit-width, bookmarks and collections in the Library, Chapter One free in Sigil View, tap advancing to panel 2, three editions at configured prices, minting disclosure, no purchase before pages exist, Vault sections, integrity-is-not-ownership notice, guest profile, persistence across reload, tablet layout.
@@ -58,7 +60,7 @@ Defect found and fixed during QA: the catalog reader selected a freshly built ob
 
 | # | Issue | Type |
 |---|---|---|
-| 1 | No approved masters for the Prologue or Chapters Two to Six. Chapter One is a 2-page excerpt | Blocked on content |
+| 1 | No approved masters for Chapters Two to Six; Chapter One is a 2-page excerpt. The Prologue is complete | Blocked on content |
 | 2 | Real purchases need App Store Connect and Play Console products, IAP integration and server receipt verification | Blocked on store accounts |
 | 3 | Accounts, sync and remote content need a Supabase project and keys | Blocked on backend provisioning |
 | 4 | Production manifest-signing key not created (`npm run keygen`) | Owner action |

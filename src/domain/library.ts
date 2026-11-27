@@ -99,3 +99,8 @@ export function buildShelves(items: ShelfItem[], collections: Collection[]): She
     collections: collections.map((c) => ({ collection: c, items: c.itemKeys.map((k) => items.find((i) => i.key === k)).filter((x): x is ShelfItem => !!x) })),
   };
 }
+
+/** "Chapter One · Signal Lost", or just "Prologue" when label and title match. */
+export function chapterName(c: { label?: string; title: string }): string {
+  return c.label && c.label !== c.title ? `${c.label} · ${c.title}` : c.title;
+}

@@ -7,7 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { getChapter, getSeries } from '@/content/catalog';
 import { coverImages } from '@/content/images';
-import { buildShelves, localKey, type ShelfItem } from '@/domain/library';
+import { buildShelves, localKey, type ShelfItem, chapterName } from '@/domain/library';
 import { shelfItems } from '@/state/shelves';
 import { track } from '@/services/analytics';
 import { pickAndImport } from '@/services/importer';
@@ -194,7 +194,7 @@ export default function Library() {
           {bookmarks.map((b) => {
             const local = state.library.find((p) => localKey(p.id) === b.key);
             const ch = local ? undefined : getChapter(b.chapterId);
-            const title = local ? local.title : ch ? `${ch.label} · ${ch.title}` : b.chapterId;
+            const title = local ? local.title : ch ? chapterName(ch) : b.chapterId;
             const label = local ? String(b.page + 1) : (ch?.pages[b.page]?.label ?? String(b.page + 1));
             return (
               <Row
@@ -232,7 +232,7 @@ export default function Library() {
               <Row key={h.chapterId} onPress={() => router.push(`/read/${encodeURIComponent(h.chapterId)}`)} accessibilityRole="button" style={styles.row}>
                 <View style={{ flex: 1 }}>
                   <T v="body" style={{ color: color.bone }} numberOfLines={1}>
-                    {local ? local.title : `${getSeries(ch!.seriesId)?.title} · ${ch!.label} · ${ch!.title}`}
+                    {local ? local.title : `${getSeries(ch!.seriesId)?.title} · ${chapterName(ch!)}`}
                   </T>
                   <T v="caption" style={{ fontSize: 12 }}>
                     {new Date(h.at).toLocaleString()}
