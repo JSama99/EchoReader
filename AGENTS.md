@@ -42,7 +42,12 @@ Docs: https://docs.expo.dev/eas/index.md
 
 ## EchoReader specifics
 
-- Rules live in `src/domain` (pure, tested). Never put spoiler, access or POW logic in components.
-- Any change to page art or credits requires `npm run hash-content`.
-- Run `npm run verify` (typecheck, tests, lint, ledger check) before declaring work done.
+- Rules live in `src/domain` (pure, tested). Never put spoiler, access, commerce, reward or POW logic in components.
+- Availability, entitlements and collectible ownership are separate. Collectibles never grant reading.
+- Never label anything as minted, owned on-chain or purchased unless a verified record says so. Sandbox stays labeled "Sandbox".
+- Flame Sigil metadata comes only from `content-src/*.json` (approved titles, no invented dates or lore). After editing it or any page art, run `npm run build-manifests`.
+- Paid or unpublished pages must never get a public `asset` (the manifest validator enforces this).
+- The core reader must keep working with zero publication metadata (imported comics declare only `standard`).
+- Schema changes go in a new file in `supabase/migrations/`; `npm run test:db` must pass.
+- Run `npm run verify` (typecheck, Jest, lint, manifest check, Postgres RLS tests) before declaring work done.
 - Design source of truth: Paper file "EchoReader — Flame Sigil"; tokens in `src/theme/tokens.ts`.

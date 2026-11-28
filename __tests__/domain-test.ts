@@ -1,18 +1,10 @@
 import { createHash } from 'node:crypto';
 
-import {
-  accessFor,
-  canRead,
-  earlyWindowIsFair,
-  earnEmberForFinish,
-  formatCountdown,
-  isoWeekKey,
-  spendEmber,
-} from '@/domain/access';
 import { fragmentProgress, newlyFound, toRoman } from '@/domain/fragments';
 import { comparePositions, isReached, maxPosition } from '@/domain/position';
 import { canonicalJson, computeChapterHash, shortHash, verifyChapter } from '@/domain/pow';
 import { resolveMode } from '@/domain/reading-mode';
+import { formatCountdown, isoWeekKey } from '@/domain/rewards';
 import {
   cameraForRect,
   chapterProgress,
@@ -32,22 +24,10 @@ import {
   shieldComments,
   shieldEntry,
 } from '@/domain/spoilers';
-import type { Chapter, CodexEntry, Fragment, Page, Series } from '@/domain/types';
+import type { CodexEntry, Fragment, Page, Series } from '@/domain/types';
 
 const sha256 = async (s: string) => createHash('sha256').update(s, 'utf8').digest('hex');
 const P = (chapter: number, page: number, panel: number) => ({ chapter, page, panel });
-
-const chapter = (over: Partial<Chapter> = {}): Chapter => ({
-  id: 'fs-1',
-  seriesId: 'flame-sigil',
-  number: 1,
-  title: 'Test',
-  publishedAt: '2026-11-27T14:00:00.000Z',
-  freeAt: '2026-11-28T14:00:00.000Z',
-  pages: [],
-  credits: [{ role: 'Creator', name: 'J-Sama' }],
-  ...over,
-});
 
 describe('position', () => {
   it('orders by chapter, then page, then panel', () => {
@@ -158,59 +138,17 @@ describe('fragments', () => {
   });
 });
 
-describe('fair access', () => {
-  const ch = chapter();
-  const before = Date.parse('2026-11-27T13:00:00Z');
-  const during = Date.parse('2026-11-27T15:00:00Z');
-  const after = Date.parse('2026-11-28T14:00:00Z');
-
-  it('moves unreleased → early → free', () => {
-    expect(accessFor(ch, before, new Set(), 1).kind).toBe('unreleased');
-    const early = accessFor(ch, during, new Set(), 1);
-    expect(early).toEqual({ kind: 'early', msUntilFree: 23 * 3600 * 1000, canSpendEmber: true });
-    expect(canRead(early)).toBe(false);
-    expect(accessFor(ch, after, new Set(), 0).kind).toBe('free');
-  });
-
-  it('spends exactly one ember and unlocks the chapter', () => {
-    const r = spendEmber(ch, during, [], 3);
-    expect(r).toEqual({ ok: true, embers: 2, unlocked: ['fs-1'] });
-    expect(canRead(accessFor(ch, during, new Set(['fs-1']), 2))).toBe(true);
-  });
-
-  it('refuses to spend when not needed or not possible', () => {
-    expect(spendEmber(ch, after, [], 3)).toEqual({ ok: false, reason: 'already-readable' });
-    expect(spendEmber(ch, during, ['fs-1'], 3)).toEqual({ ok: false, reason: 'already-readable' });
-    expect(spendEmber(ch, during, [], 0)).toEqual({ ok: false, reason: 'no-embers' });
-    expect(spendEmber(ch, before, [], 3)).toEqual({ ok: false, reason: 'unreleased' });
-  });
-
-  it('rejects catalog data with an early window over 24h', () => {
-    expect(earlyWindowIsFair(ch)).toBe(true);
-    expect(earlyWindowIsFair(chapter({ freeAt: '2026-11-28T14:00:01.000Z' }))).toBe(false);
-    expect(earlyWindowIsFair(chapter({ freeAt: '2026-11-27T13:00:00.000Z' }))).toBe(false);
-  });
-
-  it('awards at most one ember per ISO week', () => {
-    const a = earnEmberForFinish(during, 0, []);
-    expect(a).toEqual({ embers: 1, rewardedWeeks: [isoWeekKey(during)], awarded: true });
-    const b = earnEmberForFinish(during + 3600_000, a.embers, a.rewardedWeeks);
-    expect(b.awarded).toBe(false);
-    expect(b.embers).toBe(1);
-    const c = earnEmberForFinish(during + 7 * 86400_000, b.embers, b.rewardedWeeks);
-    expect(c.awarded).toBe(true);
-    expect(c.embers).toBe(2);
-  });
-
+describe('time keys', () => {
   it('computes ISO weeks across year boundaries', () => {
     expect(isoWeekKey(Date.parse('2026-11-26T12:00:00Z'))).toBe('2026-W48');
     expect(isoWeekKey(Date.parse('2027-01-01T12:00:00Z'))).toBe('2026-W53');
     expect(isoWeekKey(Date.parse('2021-01-03T12:00:00Z'))).toBe('2020-W53');
   });
 
-  it('formats countdowns', () => {
+  it('formats countdowns, with days when needed', () => {
     expect(formatCountdown(82694_000)).toBe('22:58:14');
     expect(formatCountdown(-5)).toBe('00:00:00');
+    expect(formatCountdown(2 * 86400_000 + 61_000)).toBe('2d 00:01:01');
   });
 });
 

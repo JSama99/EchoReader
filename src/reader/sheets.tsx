@@ -7,6 +7,7 @@ import { getEntry } from '@/content/catalog';
 import { shortHash, type VerifyResult } from '@/domain/pow';
 import { shieldEntry } from '@/domain/spoilers';
 import type { Chapter, Position, ReadingMode } from '@/domain/types';
+import type { FitMode, MotionPref, ReaderTheme } from '@/state/model';
 import { color, radius } from '@/theme/tokens';
 import { GlyphMark, Lock, ModeIcon, Shield } from '@/ui/icons';
 import { Button, Segmented, T, Toggle } from '@/ui/kit';
@@ -73,8 +74,16 @@ export function EchoCard({ entryId, furthest, onClose }: { entryId: string; furt
 }
 
 export function SettingsSheet({
+  modes,
   mode,
   onMode,
+  fit,
+  onFit,
+  theme,
+  onTheme,
+  motion,
+  onMotion,
+  echoAvailable,
   remember,
   onRemember,
   transition,
@@ -84,8 +93,16 @@ export function SettingsSheet({
   seriesTitle,
   onClose,
 }: {
+  modes: ReadingMode[];
   mode: ReadingMode;
   onMode: (m: ReadingMode) => void;
+  fit: FitMode;
+  onFit: (f: FitMode) => void;
+  theme: ReaderTheme;
+  onTheme: (t: ReaderTheme) => void;
+  motion: MotionPref;
+  onMotion: (m: MotionPref) => void;
+  echoAvailable: boolean;
   remember: boolean;
   onRemember: (v: boolean) => void;
   transition: 'glide' | 'cut';
@@ -108,7 +125,7 @@ export function SettingsSheet({
         </Pressable>
       </View>
       <View style={{ flexDirection: 'row', gap: 10 }}>
-        {(['sigil', 'scroll', 'pages'] as const).map((m) => {
+        {modes.map((m) => {
           const on = m === mode;
           return (
             <Pressable
@@ -127,22 +144,66 @@ export function SettingsSheet({
         })}
       </View>
       <View>
-        <SettingRow label="Transition">
+        {mode === 'pages' && (
+          <SettingRow label="Fit">
+            <View style={{ width: 210 }}>
+              <Segmented
+                value={fit}
+                onChange={onFit}
+                options={[
+                  { key: 'page', label: 'Page' },
+                  { key: 'width', label: 'Width' },
+                  { key: 'height', label: 'Height' },
+                ]}
+              />
+            </View>
+          </SettingRow>
+        )}
+        <SettingRow label="Background">
           <View style={{ width: 150 }}>
             <Segmented
-              value={transition}
-              onChange={onTransition}
+              value={theme}
+              onChange={onTheme}
               options={[
-                { key: 'glide', label: 'Glide' },
-                { key: 'cut', label: 'Cut' },
+                { key: 'dark', label: 'Dark' },
+                { key: 'light', label: 'Light' },
               ]}
             />
           </View>
         </SettingRow>
-        <SettingRow label="Echo Layer glyphs" sub="Spoiler-safe to your position">
-          <Toggle label="Echo Layer glyphs" value={echoEnabled} onChange={onEcho} tone="glyph" />
+        {mode === 'sigil' && (
+          <SettingRow label="Transition">
+            <View style={{ width: 150 }}>
+              <Segmented
+                value={transition}
+                onChange={onTransition}
+                options={[
+                  { key: 'glide', label: 'Glide' },
+                  { key: 'cut', label: 'Cut' },
+                ]}
+              />
+            </View>
+          </SettingRow>
+        )}
+        <SettingRow label="Motion" sub="System follows your device’s Reduce Motion setting">
+          <View style={{ width: 210 }}>
+            <Segmented
+              value={motion}
+              onChange={onMotion}
+              options={[
+                { key: 'system', label: 'System' },
+                { key: 'reduce', label: 'Reduce' },
+                { key: 'full', label: 'Full' },
+              ]}
+            />
+          </View>
         </SettingRow>
-        <SettingRow label={`Remember for ${seriesTitle} only`} sub="Other series keep their own settings" last>
+        {echoAvailable && (
+          <SettingRow label="Echo Layer glyphs" sub="Spoiler-safe to your position">
+            <Toggle label="Echo Layer glyphs" value={echoEnabled} onChange={onEcho} tone="glyph" />
+          </SettingRow>
+        )}
+        <SettingRow label={`Remember for ${seriesTitle} only`} sub="Other titles keep their own settings" last>
           <Toggle label={`Remember for ${seriesTitle} only`} value={remember} onChange={onRemember} />
         </SettingRow>
       </View>
@@ -183,11 +244,11 @@ export function PowSheet({ result, chapter, onClose }: { result: Extract<VerifyR
       </View>
       <T v="body">
         {pages.length > 0
-          ? `${pages.length === 1 ? '1 page doesn’t' : `${pages.length} pages don’t`} match the official ledger record. It’s most likely an interrupted download, not tampering. You can still read it.`
-          : 'The credits on this copy don’t match the ledger record. You can still read it.'}
+          ? `${pages.length === 1 ? '1 page doesn’t' : `${pages.length} pages don’t`} match the publisher’s signed record. It’s most likely an interrupted download, not tampering. You can still read it.`
+          : 'The credits on this copy don’t match the publisher’s signed record. You can still read it.'}
       </T>
       <View style={styles.hashes}>
-        <HashRow label="Ledger" value={shortHash(result.ledgerHash)} />
+        <HashRow label="Publisher record" value={shortHash(result.ledgerHash)} />
         <HashRow label="This device" value={shortHash(result.localHash)} tone={color.ember} />
         {pages.length > 0 && <HashRow label="Pages affected" value={pages.join(', ')} />}
       </View>

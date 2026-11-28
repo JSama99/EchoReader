@@ -219,11 +219,32 @@ export function Divider({ style }: { style?: StyleProp<ViewStyle> }) {
   return <View style={[{ height: StyleSheet.hairlineWidth, backgroundColor: color.ash }, style]} />;
 }
 
-export function Row({ children, style, ...rest }: PressableProps & { children: ReactNode; style?: StyleProp<ViewStyle> }) {
+/**
+ * A list row. `trailing` holds a secondary control (Follow, Remove…). It is
+ * rendered beside the row's pressable area, never inside it: nesting one
+ * button in another is invalid HTML on web and splits taps unpredictably on
+ * native.
+ */
+export function Row({
+  children,
+  style,
+  trailing,
+  ...rest
+}: PressableProps & { children: ReactNode; style?: StyleProp<ViewStyle>; trailing?: ReactNode }) {
+  if (!trailing) {
+    return (
+      <Pressable {...rest} style={({ pressed }) => [styles.row, { opacity: pressed && rest.onPress ? 0.7 : 1 }, style]}>
+        {children}
+      </Pressable>
+    );
+  }
   return (
-    <Pressable {...rest} style={({ pressed }) => [styles.row, { opacity: pressed && rest.onPress ? 0.7 : 1 }, style]}>
-      {children}
-    </Pressable>
+    <View style={[styles.row, style]}>
+      <Pressable {...rest} style={({ pressed }) => [styles.row, { flex: 1, minHeight: 0, opacity: pressed && rest.onPress ? 0.7 : 1 }]}>
+        {children}
+      </Pressable>
+      {trailing}
+    </View>
   );
 }
 

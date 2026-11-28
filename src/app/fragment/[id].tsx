@@ -7,7 +7,7 @@ import Animated, { Easing, useAnimatedStyle, useSharedValue, withDelay, withTimi
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Path, Text as SvgText } from 'react-native-svg';
 
-import { chapters, fragments } from '@/content/catalog';
+import { allChapters, fragments } from '@/content/catalog';
 import { toRoman } from '@/domain/fragments';
 import { useFragments } from '@/state/derived';
 import { color, font } from '@/theme/tokens';
@@ -29,7 +29,7 @@ export default function FragmentEarned() {
   const glyphStyle = useAnimatedStyle(() => ({ opacity: rise.value, transform: [{ translateY: (1 - rise.value) * 24 }, { scale: 0.9 + rise.value * 0.1 }] }));
 
   if (!fragment) return null;
-  const chapter = chapters.find((c) => c.number === fragment.foundAt.chapter && c.seriesId === fragment.seriesId);
+  const chapter = allChapters().find((c) => c.number === fragment.foundAt.chapter && c.seriesId === fragment.seriesId);
   const page = chapter?.pages[fragment.foundAt.page];
   const remaining = progress.total - progress.count;
 

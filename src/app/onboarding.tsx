@@ -104,14 +104,15 @@ export default function Onboarding() {
 
         {step === 2 && (
           <>
-            <T v="kicker">3 of 3 · Fair by design</T>
+            <T v="kicker">3 of 3 · Beyond the page</T>
             <T v="display" style={{ fontSize: 36, lineHeight: 38 }}>
-              No ads. No paid waits.
+              Your reader. Free.
             </T>
             <T v="body">
-              New chapters land on Fridays. Early access costs one Ember, and every chapter is free for everyone within 24 hours. You
-              earn an Ember each week you finish a chapter. You start with one.
+              Import your own comics (PDF, CBZ or images) and read them free, offline, with no account. The Flame Sigil Prologue and Chapter One
+              are free; later chapters offer a preview and editions you can buy.
             </T>
+            <T v="body">Earn Embers as you read and discover. They’re rewards, not money.</T>
             <T v="body">Nothing in the Codex or the Cypher will spoil past the panel you’ve reached.</T>
           </>
         )}

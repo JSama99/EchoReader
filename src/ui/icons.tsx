@@ -145,3 +145,48 @@ export const TabCypher = ({ size = 24, color: c }: P) => (
     <Path d="M5 7.5h14M5 12h14M5 16.5h9" />
   </Svg>
 );
+
+export const TabHome = ({ size = 24, color: c }: P) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={stroke(c)} strokeWidth={1.8} strokeLinejoin="round">
+    <Path d="M4 10.5 12 4l8 6.5V20h-5.5v-5.5h-5V20H4Z" />
+  </Svg>
+);
+
+export const TabVault = ({ size = 24, color: c }: P) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={stroke(c)} strokeWidth={1.8} strokeLinejoin="round">
+    <Rect x={3.5} y={5} width={17} height={14} rx={2.5} />
+    <Circle cx={12} cy={12} r={3.2} />
+    <Path d="M12 8.8v-1M12 16.2v-1M15.2 12h1M7.8 12h1" strokeLinecap="round" />
+  </Svg>
+);
+
+export const TabProfile = ({ size = 24, color: c }: P) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={stroke(c)} strokeWidth={1.8}>
+    <Circle cx={12} cy={8.5} r={3.8} />
+    <Path d="M4.5 20c1.2-3.6 4-5.4 7.5-5.4s6.3 1.8 7.5 5.4" strokeLinecap="round" />
+  </Svg>
+);
+
+export const Bookmark = ({ size = 22, color: c, filled }: P & { filled?: boolean }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill={filled ? (c ?? color.ember) : 'none'} stroke={filled ? (c ?? color.ember) : stroke(c)} strokeWidth={1.8} strokeLinejoin="round">
+    <Path d="M6.5 4h11v16l-5.5-4-5.5 4Z" />
+  </Svg>
+);
+
+export const Plus = ({ size = 20, color: c }: P) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={stroke(c)} strokeWidth={2} strokeLinecap="round">
+    <Path d="M12 5v14M5 12h14" />
+  </Svg>
+);
+
+export const Trash = ({ size = 20, color: c }: P) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={stroke(c)} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+    <Path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13" />
+  </Svg>
+);
+
+export const Star = ({ size = 20, color: c, filled }: P & { filled?: boolean }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill={filled ? (c ?? color.ember) : 'none'} stroke={filled ? (c ?? color.ember) : stroke(c)} strokeWidth={1.8} strokeLinejoin="round">
+    <Path d="m12 3.8 2.5 5.2 5.7.8-4.1 4 1 5.6L12 16.7l-5.1 2.7 1-5.6-4.1-4 5.7-.8Z" />
+  </Svg>
+);

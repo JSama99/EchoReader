@@ -1,0 +1,9 @@
+{
+  "name": "echo-pdf",
+  "version": "1.0.0",
+  "description": "Renders PDF pages to JPEG for EchoReader imports (PDFKit on iOS, PdfRenderer on Android).",
+  "main": "index.ts",
+  "private": true,
+  "license": "MIT",
+  "author": "TalonSight Technologies"
+}

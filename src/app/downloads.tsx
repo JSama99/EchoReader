@@ -2,26 +2,31 @@ import { useRouter } from 'expo-router';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { chapters, getSeries, ledgerFor } from '@/content/catalog';
-import { useDispatch, useReader } from '@/state/store';
+import { allChapters, getSeries, ledgerFor } from '@/content/catalog';
+import { localKey, chapterName } from '@/domain/library';
+import { useReader } from '@/state/store';
 import { color, radius } from '@/theme/tokens';
 import { Back, Check } from '@/ui/icons';
-import { IconButton, Row, Segmented, T, Toggle } from '@/ui/kit';
+import { IconButton, Row, T } from '@/ui/kit';
 
 const mb = (bytes: number) => `${(bytes / 1_000_000).toFixed(1)} MB`;
 
+/**
+ * What reads offline on this device. Everything listed here is real: pages
+ * bundled with the app and comics the reader imported. Remote chapter
+ * downloads arrive with the content service and aren't simulated here.
+ */
 export default function Downloads() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
-  const dispatch = useDispatch();
-  const keepNext = useReader((s) => s.keepNextChapters);
-  const clearAfter = useReader((s) => s.clearAfterDays);
   const finished = useReader((s) => s.finishedChapterIds);
+  const library = useReader((s) => s.library);
 
-  const offline = chapters
+  const bundled = allChapters()
     .filter((c) => c.pages.length > 0)
     .map((c) => ({ c, bytes: (ledgerFor(c.id)?.pageBytes ?? []).reduce((a, b) => a + b, 0) }));
-  const total = offline.reduce((a, x) => a + x.bytes, 0);
+  const importedBytes = library.reduce((a, p) => a + p.sizeBytes, 0);
+  const total = bundled.reduce((a, x) => a + x.bytes, 0) + importedBytes;
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: color.soot }} contentContainerStyle={{ paddingTop: insets.top, paddingBottom: insets.bottom + 32 }}>
@@ -32,72 +37,54 @@ export default function Downloads() {
       </View>
       <View style={{ paddingHorizontal: 24, gap: 16 }}>
         <T v="headline" style={{ fontSize: 32, lineHeight: 36 }}>
-          Downloads
+          Offline
         </T>
-        <View style={{ gap: 8 }}>
-          <View style={styles.bar}>
-            <View style={{ flex: Math.max(1, total), backgroundColor: color.ember }} />
-          </View>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <T v="caption" style={{ fontSize: 12 }}>
-              Pages, Codex and verification data
-            </T>
-            <T v="mono" style={{ color: color.bone }}>
-              {mb(total)}
-            </T>
-          </View>
+        <View style={styles.card}>
+          <T v="caption">Everything below reads without a connection.</T>
+          <T v="mono" style={{ color: color.bone }}>
+            {mb(total)} ON THIS DEVICE
+          </T>
         </View>
 
-        <View style={styles.card}>
-          <View style={[styles.setRow, styles.divider]}>
+        <T v="label">Included with the app</T>
+        {bundled.map(({ c, bytes }) => (
+          <Row key={c.id} style={styles.row} accessibilityLabel={`${c.label}, ${mb(bytes)}, available offline`}>
             <View style={{ flex: 1, gap: 2 }}>
               <T v="body" style={{ color: color.bone }}>
-                Keep the next 3 chapters ready
+                {getSeries(c.seriesId)?.title} · {chapterName(c)}
               </T>
               <T v="caption" style={{ fontSize: 12 }}>
-                On Wi-Fi, for series you follow
+                {mb(bytes)} · {finished.includes(c.id) ? 'Read' : 'Unread'}
+                {c.contentStatus === 'excerpt' ? ' · excerpt' : ''}
               </T>
             </View>
-            <Toggle label="Keep the next 3 chapters ready" value={keepNext} onChange={(v) => dispatch({ type: 'set', patch: { keepNextChapters: v } })} />
-          </View>
-          <View style={{ gap: 10, paddingVertical: 14 }}>
-            <T v="body" style={{ color: color.bone }}>
-              Clear chapters after reading
-            </T>
-            <Segmented
-              value={String(clearAfter)}
-              onChange={(k) => dispatch({ type: 'set', patch: { clearAfterDays: k === 'null' ? null : (Number(k) as 0 | 1 | 7) } })}
-              options={[
-                { key: '0', label: 'Now' },
-                { key: '1', label: '1 day' },
-                { key: '7', label: '7 days' },
-                { key: 'null', label: 'Never' },
-              ]}
-            />
-          </View>
-        </View>
+            <Check />
+          </Row>
+        ))}
 
-        <View>
-          {offline.map(({ c, bytes }) => (
-            <Row key={c.id} style={styles.row} accessibilityLabel={`Chapter ${c.number}, ${mb(bytes)}, available offline`}>
-              <T v="mono" style={{ width: 28, fontSize: 13, color: color.bone }}>
-                {c.number}
-              </T>
+        <T v="label" style={{ paddingTop: 8 }}>
+          Your imported comics
+        </T>
+        {library.length === 0 ? (
+          <T v="caption">None yet. Import PDF, CBZ or image files from the Library tab.</T>
+        ) : (
+          library.map((p) => (
+            <Row key={p.id} style={styles.row} onPress={() => router.push(`/read/${encodeURIComponent(localKey(p.id))}`)} accessibilityLabel={`${p.title}, ${mb(p.sizeBytes)}`}>
               <View style={{ flex: 1, gap: 2 }}>
-                <T v="body" style={{ color: color.bone }}>
-                  {getSeries(c.seriesId)?.title} · {c.title}
+                <T v="body" style={{ color: color.bone }} numberOfLines={1}>
+                  {p.title}
                 </T>
                 <T v="caption" style={{ fontSize: 12 }}>
-                  {mb(bytes)} · {finished.includes(c.id) ? 'Read' : 'Unread'} · bundled with this edition
+                  {p.format.toUpperCase()} · {p.pages.length} pages · {mb(p.sizeBytes)}
                 </T>
               </View>
               <Check />
             </Row>
-          ))}
-        </View>
-        <T v="caption">
-          This edition ships Chapter 1 inside the app, so it reads offline from first launch. Chapters published later download
-          over the content service and follow the rules above.
+          ))
+        )}
+
+        <T v="caption" style={{ paddingTop: 8 }}>
+          Chapters released after this version of the app will download from the content service, which isn’t live yet.
         </T>
       </View>
     </ScrollView>
@@ -106,9 +93,6 @@ export default function Downloads() {
 
 const styles = StyleSheet.create({
   nav: { paddingHorizontal: 8 },
-  bar: { height: 8, borderRadius: radius.full, overflow: 'hidden', flexDirection: 'row', backgroundColor: color.ash },
-  card: { borderRadius: 16, backgroundColor: color.char, borderWidth: 1, borderColor: color.ash, paddingHorizontal: 16 },
-  setRow: { flexDirection: 'row', alignItems: 'center', minHeight: 64, gap: 12 },
-  divider: { borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: color.ash },
-  row: { minHeight: 62, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: color.ash },
+  card: { gap: 8, padding: 16, borderRadius: radius.md, backgroundColor: color.char, borderWidth: 1, borderColor: color.ash },
+  row: { minHeight: 60, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: color.ash },
 });

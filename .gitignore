@@ -29,6 +29,8 @@ yarn-error.*
 # macOS
 .DS_Store
 *.pem
+# Public development signing key, deliberately committed (untrusted in release builds).
+!scripts/dev-keys/*.pem
 
 # local env files
 .env*.local

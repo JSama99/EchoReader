@@ -1,0 +1,1995 @@
+{
+  "$comment": "Editorial source for the Flame Sigil manifest. Approved metadata only: never invent titles, dates or lore here. Run `npm run build-manifests` after editing; it hashes the page files and signs src/content/manifests/flame-sigil.json.",
+  "manifestId": "talonsight/flame-sigil",
+  "version": 3,
+  "issuedAt": "2026-11-27T10:00:00.000Z",
+  "publisher": {
+    "id": "talonsight",
+    "name": "TalonSight Technologies"
+  },
+  "series": {
+    "id": "flame-sigil",
+    "title": "Flame Sigil",
+    "tagline": "Where rhythm, memory, and power collide.",
+    "direction": "ltr",
+    "defaultMode": "sigil",
+    "capabilities": [
+      "standard",
+      "sigil",
+      "echo",
+      "codex",
+      "fragments",
+      "cypher",
+      "verification",
+      "collectibles"
+    ],
+    "status": "live"
+  },
+  "publications": [
+    {
+      "publicationId": "flame-sigil-0",
+      "chapterNumber": 0,
+      "label": "Prologue",
+      "title": "Prologue",
+      "spoilerLevel": "none",
+      "contentStatus": "complete",
+      "direction": "ltr",
+      "capabilities": [
+        "standard",
+        "sigil",
+        "echo",
+        "codex",
+        "fragments",
+        "cypher",
+        "verification"
+      ],
+      "availability": {
+        "status": "published",
+        "publishedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "access": {
+        "base": "free",
+        "previewPages": 0,
+        "promotions": [],
+        "subscriptionEligible": false
+      },
+      "editions": [],
+      "contentVersion": 1,
+      "credits": [
+        {
+          "role": "Creator",
+          "name": "J-Sama"
+        },
+        {
+          "role": "Publisher",
+          "name": "TalonSight Technologies"
+        }
+      ],
+      "pages": [
+        {
+          "id": "fs0-p01",
+          "label": "1",
+          "file": "assets/content/flame-sigil/prologue_p01.png",
+          "asset": "bundled:fs0-p01",
+          "panels": [
+            {
+              "id": "splash",
+              "rect": {
+                "x": 0.0,
+                "y": 0.0,
+                "w": 1.0,
+                "h": 1.0
+              }
+            },
+            {
+              "id": "archive",
+              "rect": {
+                "x": 0.1668,
+                "y": 0.122,
+                "w": 0.367,
+                "h": 0.3506
+              }
+            },
+            {
+              "id": "timeline",
+              "rect": {
+                "x": 0.5671,
+                "y": 0.1067,
+                "w": 0.417,
+                "h": 0.3963
+              }
+            },
+            {
+              "id": "rhythm-gate",
+              "rect": {
+                "x": 0.4504,
+                "y": 0.4573,
+                "w": 0.4754,
+                "h": 0.343
+              }
+            },
+            {
+              "id": "descendant",
+              "rect": {
+                "x": 0.0,
+                "y": 0.6555,
+                "w": 1.0,
+                "h": 0.3445
+              }
+            }
+          ],
+          "glyphs": []
+        },
+        {
+          "id": "fs0-p02",
+          "label": "2",
+          "file": "assets/content/flame-sigil/prologue_p02.png",
+          "asset": "bundled:fs0-p02",
+          "panels": [
+            {
+              "id": "atlantis",
+              "rect": {
+                "x": 0.0,
+                "y": 0.0,
+                "w": 1.0,
+                "h": 0.2729
+              }
+            },
+            {
+              "id": "sound-is-code",
+              "rect": {
+                "x": 0.0,
+                "y": 0.2759,
+                "w": 0.5288,
+                "h": 0.2424
+              }
+            },
+            {
+              "id": "network",
+              "rect": {
+                "x": 0.5338,
+                "y": 0.2759,
+                "w": 0.4662,
+                "h": 0.2424
+              }
+            },
+            {
+              "id": "carried-forward",
+              "rect": {
+                "x": 0.0,
+                "y": 0.5213,
+                "w": 0.4612,
+                "h": 0.221
+              }
+            },
+            {
+              "id": "gate-city",
+              "rect": {
+                "x": 0.4654,
+                "y": 0.5213,
+                "w": 0.5346,
+                "h": 0.221
+              }
+            },
+            {
+              "id": "stirring",
+              "rect": {
+                "x": 0.0,
+                "y": 0.7454,
+                "w": 1.0,
+                "h": 0.2546
+              }
+            }
+          ],
+          "glyphs": []
+        },
+        {
+          "id": "fs0-p03",
+          "label": "3",
+          "file": "assets/content/flame-sigil/prologue_p03.png",
+          "asset": "bundled:fs0-p03",
+          "panels": [
+            {
+              "id": "elder",
+              "rect": {
+                "x": 0.0,
+                "y": 0.0,
+                "w": 0.5088,
+                "h": 0.2797
+              }
+            },
+            {
+              "id": "fire-1864",
+              "rect": {
+                "x": 0.367,
+                "y": 0.0,
+                "w": 0.633,
+                "h": 0.2797
+              }
+            },
+            {
+              "id": "ruins",
+              "rect": {
+                "x": 0.0,
+                "y": 0.2835,
+                "w": 0.4904,
+                "h": 0.2622
+              }
+            },
+            {
+              "id": "rebuilt",
+              "rect": {
+                "x": 0.4979,
+                "y": 0.2835,
+                "w": 0.5021,
+                "h": 0.2622
+              }
+            },
+            {
+              "id": "embers",
+              "rect": {
+                "x": 0.0,
+                "y": 0.5495,
+                "w": 1.0,
+                "h": 0.1997
+              }
+            },
+            {
+              "id": "rekindling",
+              "rect": {
+                "x": 0.0,
+                "y": 0.753,
+                "w": 1.0,
+                "h": 0.247
+              }
+            }
+          ],
+          "glyphs": []
+        },
+        {
+          "id": "fs0-p04",
+          "label": "4",
+          "file": "assets/content/flame-sigil/prologue_p04.png",
+          "asset": "bundled:fs0-p04",
+          "panels": [
+            {
+              "id": "skyline",
+              "rect": {
+                "x": 0.0,
+                "y": 0.0,
+                "w": 1.0,
+                "h": 0.2104
+              }
+            },
+            {
+              "id": "beneath",
+              "rect": {
+                "x": 0.0,
+                "y": 0.2142,
+                "w": 1.0,
+                "h": 0.2904
+              }
+            },
+            {
+              "id": "sigil-wall",
+              "rect": {
+                "x": 0.0,
+                "y": 0.5091,
+                "w": 0.442,
+                "h": 0.2348
+              }
+            },
+            {
+              "id": "hidden-network",
+              "rect": {
+                "x": 0.4462,
+                "y": 0.5091,
+                "w": 0.5538,
+                "h": 0.2348
+              }
+            },
+            {
+              "id": "street",
+              "rect": {
+                "x": 0.0,
+                "y": 0.7477,
+                "w": 1.0,
+                "h": 0.2523
+              }
+            }
+          ],
+          "glyphs": []
+        },
+        {
+          "id": "fs0-p05",
+          "label": "5",
+          "file": "assets/content/flame-sigil/prologue_p05.png",
+          "asset": "bundled:fs0-p05",
+          "panels": [
+            {
+              "id": "memory",
+              "rect": {
+                "x": 0.0,
+                "y": 0.0,
+                "w": 1.0,
+                "h": 0.1897
+              }
+            },
+            {
+              "id": "stirs",
+              "rect": {
+                "x": 0.0,
+                "y": 0.1933,
+                "w": 1.0,
+                "h": 0.1776
+              }
+            },
+            {
+              "id": "echoes",
+              "rect": {
+                "x": 0.0,
+                "y": 0.3745,
+                "w": 1.0,
+                "h": 0.189
+              }
+            },
+            {
+              "id": "heartbeat",
+              "rect": {
+                "x": 0.0,
+                "y": 0.5663,
+                "w": 1.0,
+                "h": 0.194
+              }
+            },
+            {
+              "id": "signal",
+              "rect": {
+                "x": 0.0,
+                "y": 0.7632,
+                "w": 1.0,
+                "h": 0.2368
+              }
+            }
+          ],
+          "glyphs": []
+        },
+        {
+          "id": "fs0-p06",
+          "label": "6",
+          "file": "assets/content/flame-sigil/prologue_p06.png",
+          "asset": "bundled:fs0-p06",
+          "panels": [
+            {
+              "id": "city-slept",
+              "rect": {
+                "x": 0.0,
+                "y": 0.0,
+                "w": 1.0,
+                "h": 0.183
+              }
+            },
+            {
+              "id": "thum",
+              "rect": {
+                "x": 0.0,
+                "y": 0.1872,
+                "w": 1.0,
+                "h": 0.1775
+              }
+            },
+            {
+              "id": "awakens",
+              "rect": {
+                "x": 0.0,
+                "y": 0.3674,
+                "w": 1.0,
+                "h": 0.1692
+              }
+            },
+            {
+              "id": "ignites",
+              "rect": {
+                "x": 0.0,
+                "y": 0.5407,
+                "w": 1.0,
+                "h": 0.1761
+              }
+            },
+            {
+              "id": "journey",
+              "rect": {
+                "x": 0.0,
+                "y": 0.7203,
+                "w": 1.0,
+                "h": 0.2797
+              }
+            }
+          ],
+          "glyphs": []
+        }
+      ]
+    },
+    {
+      "publicationId": "flame-sigil-1",
+      "chapterNumber": 1,
+      "label": "Chapter One",
+      "title": "Signal Lost",
+      "spoilerLevel": "none",
+      "contentStatus": "complete",
+      "direction": "ltr",
+      "capabilities": [
+        "standard",
+        "sigil",
+        "echo",
+        "codex",
+        "fragments",
+        "cypher",
+        "verification"
+      ],
+      "availability": {
+        "status": "published",
+        "publishedAt": "2026-11-20T14:00:00.000Z"
+      },
+      "access": {
+        "base": "free",
+        "previewPages": 0,
+        "promotions": [],
+        "subscriptionEligible": false
+      },
+      "editions": [],
+      "contentVersion": 2,
+      "credits": [
+        {
+          "role": "Creator",
+          "name": "J-Sama"
+        },
+        {
+          "role": "Publisher",
+          "name": "TalonSight Technologies"
+        }
+      ],
+      "pages": [
+        {
+          "id": "fs1-p01",
+          "label": "1",
+          "file": "assets/content/flame-sigil/ch1_p01.png",
+          "asset": "bundled:fs1-p01",
+          "panels": [
+            {
+              "id": "opening",
+              "rect": {
+                "x": 0.0,
+                "y": 0.0,
+                "w": 1.0,
+                "h": 0.2292
+              }
+            },
+            {
+              "id": "maliks-room",
+              "rect": {
+                "x": 0.0,
+                "y": 0.2331,
+                "w": 1.0,
+                "h": 0.2253
+              }
+            },
+            {
+              "id": "snooze",
+              "rect": {
+                "x": 0.0,
+                "y": 0.4616,
+                "w": 0.2861,
+                "h": 0.2181
+              }
+            },
+            {
+              "id": "awake",
+              "rect": {
+                "x": 0.293,
+                "y": 0.4616,
+                "w": 0.707,
+                "h": 0.2181
+              }
+            },
+            {
+              "id": "warm-hand",
+              "rect": {
+                "x": 0.7422,
+                "y": 0.5469,
+                "w": 0.2578,
+                "h": 0.1328
+              }
+            },
+            {
+              "id": "radio",
+              "rect": {
+                "x": 0.0,
+                "y": 0.6829,
+                "w": 1.0,
+                "h": 0.3171
+              }
+            }
+          ],
+          "glyphs": []
+        },
+        {
+          "id": "fs1-p02",
+          "label": "2",
+          "file": "assets/content/flame-sigil/ch1_p02.png",
+          "asset": "bundled:fs1-p02",
+          "panels": [
+            {
+              "id": "ayana-dream",
+              "rect": {
+                "x": 0.0,
+                "y": 0.0,
+                "w": 1.0,
+                "h": 0.2324
+              }
+            },
+            {
+              "id": "candle",
+              "rect": {
+                "x": 0.0,
+                "y": 0.2344,
+                "w": 0.2441,
+                "h": 0.2311
+              }
+            },
+            {
+              "id": "pendant",
+              "rect": {
+                "x": 0.2441,
+                "y": 0.2344,
+                "w": 0.7559,
+                "h": 0.2311
+              }
+            },
+            {
+              "id": "faulty-wiring",
+              "rect": {
+                "x": 0.0,
+                "y": 0.4655,
+                "w": 0.4824,
+                "h": 0.1725
+              }
+            },
+            {
+              "id": "night-city",
+              "rect": {
+                "x": 0.4824,
+                "y": 0.4655,
+                "w": 0.5176,
+                "h": 0.1725
+              }
+            },
+            {
+              "id": "the-shift",
+              "rect": {
+                "x": 0.0,
+                "y": 0.638,
+                "w": 0.4824,
+                "h": 0.362
+              }
+            },
+            {
+              "id": "pulse-spreads",
+              "rect": {
+                "x": 0.4824,
+                "y": 0.638,
+                "w": 0.5176,
+                "h": 0.1758
+              }
+            },
+            {
+              "id": "pulse-sacred",
+              "rect": {
+                "x": 0.4824,
+                "y": 0.8138,
+                "w": 0.5176,
+                "h": 0.1862
+              }
+            }
+          ],
+          "glyphs": []
+        },
+        {
+          "id": "fs1-p03",
+          "label": "3",
+          "file": "assets/content/flame-sigil/ch1_p03.png",
+          "asset": "bundled:fs1-p03",
+          "panels": [
+            {
+              "id": "marta",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1,
+                "h": 0.2129
+              }
+            },
+            {
+              "id": "sweet-auburn",
+              "rect": {
+                "x": 0,
+                "y": 0.2155,
+                "w": 1,
+                "h": 0.1836
+              }
+            },
+            {
+              "id": "ebenezer",
+              "rect": {
+                "x": 0,
+                "y": 0.4023,
+                "w": 0.4,
+                "h": 0.1888
+              }
+            },
+            {
+              "id": "bell",
+              "rect": {
+                "x": 0.371,
+                "y": 0.4023,
+                "w": 0.629,
+                "h": 0.1888
+              }
+            },
+            {
+              "id": "patchwerk",
+              "rect": {
+                "x": 0,
+                "y": 0.5944,
+                "w": 0.6055,
+                "h": 0.1628
+              }
+            },
+            {
+              "id": "console",
+              "rect": {
+                "x": 0.469,
+                "y": 0.5944,
+                "w": 0.531,
+                "h": 0.1628
+              }
+            },
+            {
+              "id": "skyline",
+              "rect": {
+                "x": 0,
+                "y": 0.7604,
+                "w": 1,
+                "h": 0.2396
+              }
+            }
+          ],
+          "glyphs": [
+            {
+              "id": "g-bell-echo",
+              "rect": {
+                "x": 0.6,
+                "y": 0.5,
+                "w": 0.25,
+                "h": 0.075
+              },
+              "codexEntryId": "the-pulse",
+              "panel": 3
+            }
+          ]
+        },
+        {
+          "id": "fs1-p04",
+          "label": "4",
+          "file": "assets/content/flame-sigil/ch1_p04.png",
+          "asset": "bundled:fs1-p04",
+          "panels": [
+            {
+              "id": "echo-hallway",
+              "rect": {
+                "x": 0.0,
+                "y": 0.0,
+                "w": 0.625,
+                "h": 0.3268
+              }
+            },
+            {
+              "id": "malik-listens",
+              "rect": {
+                "x": 0.5859,
+                "y": 0.0,
+                "w": 0.4141,
+                "h": 0.3268
+              }
+            },
+            {
+              "id": "library",
+              "rect": {
+                "x": 0.0,
+                "y": 0.3294,
+                "w": 1.0,
+                "h": 0.2858
+              }
+            },
+            {
+              "id": "malik-feels",
+              "rect": {
+                "x": 0.0,
+                "y": 0.6172,
+                "w": 0.5469,
+                "h": 0.2943
+              }
+            },
+            {
+              "id": "ayana-hears",
+              "rect": {
+                "x": 0.459,
+                "y": 0.6172,
+                "w": 0.541,
+                "h": 0.2943
+              }
+            },
+            {
+              "id": "two-points",
+              "rect": {
+                "x": 0.0,
+                "y": 0.8984,
+                "w": 1.0,
+                "h": 0.1016
+              }
+            }
+          ],
+          "glyphs": []
+        },
+        {
+          "id": "fs1-p05",
+          "label": "5",
+          "file": "assets/content/flame-sigil/ch1_p05.png",
+          "asset": "bundled:fs1-p05",
+          "panels": [
+            {
+              "id": "ashby",
+              "rect": {
+                "x": 0.0,
+                "y": 0.0,
+                "w": 1.0,
+                "h": 0.2194
+              }
+            },
+            {
+              "id": "window",
+              "rect": {
+                "x": 0.0,
+                "y": 0.222,
+                "w": 1.0,
+                "h": 0.1953
+              }
+            },
+            {
+              "id": "remember",
+              "rect": {
+                "x": 0.0,
+                "y": 0.4206,
+                "w": 1.0,
+                "h": 0.2077
+              }
+            },
+            {
+              "id": "thrum",
+              "rect": {
+                "x": 0.0,
+                "y": 0.6309,
+                "w": 1.0,
+                "h": 0.1523
+              }
+            },
+            {
+              "id": "silence",
+              "rect": {
+                "x": 0.0,
+                "y": 0.7858,
+                "w": 0.5078,
+                "h": 0.2142
+              }
+            },
+            {
+              "id": "message-remained",
+              "rect": {
+                "x": 0.4688,
+                "y": 0.7858,
+                "w": 0.5312,
+                "h": 0.2142
+              }
+            }
+          ],
+          "glyphs": []
+        },
+        {
+          "id": "fs1-p06",
+          "label": "6",
+          "file": "assets/content/flame-sigil/ch1_p06.png",
+          "asset": "bundled:fs1-p06",
+          "panels": [
+            {
+              "id": "piedmont",
+              "rect": {
+                "x": 0.0,
+                "y": 0.0,
+                "w": 1.0,
+                "h": 0.1849
+              }
+            },
+            {
+              "id": "violinist",
+              "rect": {
+                "x": 0.0,
+                "y": 0.1868,
+                "w": 1.0,
+                "h": 0.1888
+              }
+            },
+            {
+              "id": "music-shifted",
+              "rect": {
+                "x": 0.0,
+                "y": 0.3776,
+                "w": 0.5322,
+                "h": 0.1836
+              }
+            },
+            {
+              "id": "violin-glow",
+              "rect": {
+                "x": 0.5322,
+                "y": 0.3776,
+                "w": 0.4678,
+                "h": 0.1836
+              }
+            },
+            {
+              "id": "a-warning",
+              "rect": {
+                "x": 0.0,
+                "y": 0.5638,
+                "w": 1.0,
+                "h": 0.2096
+              }
+            },
+            {
+              "id": "true-rhythm",
+              "rect": {
+                "x": 0.0,
+                "y": 0.776,
+                "w": 1.0,
+                "h": 0.224
+              }
+            }
+          ],
+          "glyphs": []
+        },
+        {
+          "id": "fs1-p07",
+          "label": "7",
+          "file": "assets/content/flame-sigil/ch1_p07.png",
+          "asset": "bundled:fs1-p07",
+          "panels": [
+            {
+              "id": "come-on",
+              "rect": {
+                "x": 0.0,
+                "y": 0.0,
+                "w": 1.0,
+                "h": 0.2285
+              }
+            },
+            {
+              "id": "shortwave",
+              "rect": {
+                "x": 0.0,
+                "y": 0.2318,
+                "w": 1.0,
+                "h": 0.1771
+              }
+            },
+            {
+              "id": "flame-sigil-wall",
+              "rect": {
+                "x": 0.0,
+                "y": 0.4115,
+                "w": 1.0,
+                "h": 0.1979
+              }
+            },
+            {
+              "id": "on-purpose",
+              "rect": {
+                "x": 0.0,
+                "y": 0.612,
+                "w": 1.0,
+                "h": 0.1634
+              }
+            },
+            {
+              "id": "calling-me",
+              "rect": {
+                "x": 0.0,
+                "y": 0.7773,
+                "w": 1.0,
+                "h": 0.2227
+              }
+            }
+          ],
+          "glyphs": []
+        },
+        {
+          "id": "fs1-p08",
+          "label": "8",
+          "file": "assets/content/flame-sigil/ch1_p08.png",
+          "asset": "bundled:fs1-p08",
+          "panels": [
+            {
+              "id": "apartment",
+              "rect": {
+                "x": 0.0,
+                "y": 0.0,
+                "w": 0.6416,
+                "h": 0.222
+              }
+            },
+            {
+              "id": "drew-again",
+              "rect": {
+                "x": 0.6484,
+                "y": 0.0,
+                "w": 0.3516,
+                "h": 0.222
+              }
+            },
+            {
+              "id": "familiar",
+              "rect": {
+                "x": 0.0,
+                "y": 0.2259,
+                "w": 0.5615,
+                "h": 0.2051
+              }
+            },
+            {
+              "id": "this-is-it",
+              "rect": {
+                "x": 0.5684,
+                "y": 0.2259,
+                "w": 0.4316,
+                "h": 0.2051
+              }
+            },
+            {
+              "id": "matched",
+              "rect": {
+                "x": 0.0,
+                "y": 0.4336,
+                "w": 1.0,
+                "h": 0.2435
+              }
+            },
+            {
+              "id": "connected",
+              "rect": {
+                "x": 0.0,
+                "y": 0.6797,
+                "w": 0.5273,
+                "h": 0.3203
+              }
+            },
+            {
+              "id": "frequency",
+              "rect": {
+                "x": 0.4688,
+                "y": 0.6797,
+                "w": 0.5312,
+                "h": 0.3203
+              }
+            }
+          ],
+          "glyphs": []
+        },
+        {
+          "id": "fs1-p09",
+          "label": "9",
+          "file": "assets/content/flame-sigil/ch1_p09.png",
+          "asset": "bundled:fs1-p09",
+          "panels": [
+            {
+              "id": "energy-grid",
+              "rect": {
+                "x": 0.0,
+                "y": 0.0833,
+                "w": 1.0,
+                "h": 0.1979
+              }
+            },
+            {
+              "id": "watcher",
+              "rect": {
+                "x": 0.0,
+                "y": 0.2845,
+                "w": 1.0,
+                "h": 0.1348
+              }
+            },
+            {
+              "id": "echo-lock",
+              "rect": {
+                "x": 0.0,
+                "y": 0.4212,
+                "w": 1.0,
+                "h": 0.14
+              }
+            },
+            {
+              "id": "cascade",
+              "rect": {
+                "x": 0.0,
+                "y": 0.5638,
+                "w": 1.0,
+                "h": 0.1556
+              }
+            },
+            {
+              "id": "surveillance",
+              "rect": {
+                "x": 0.0,
+                "y": 0.7227,
+                "w": 1.0,
+                "h": 0.194
+              }
+            }
+          ],
+          "glyphs": []
+        },
+        {
+          "id": "fs1-p10",
+          "label": "10",
+          "file": "assets/content/flame-sigil/ch1_p10.png",
+          "asset": "bundled:fs1-p10",
+          "panels": [
+            {
+              "id": "west-end",
+              "rect": {
+                "x": 0.0,
+                "y": 0.0,
+                "w": 1.0,
+                "h": 0.1647
+              }
+            },
+            {
+              "id": "that-pulse",
+              "rect": {
+                "x": 0.0,
+                "y": 0.168,
+                "w": 1.0,
+                "h": 0.2005
+              }
+            },
+            {
+              "id": "gotta-trust",
+              "rect": {
+                "x": 0.0,
+                "y": 0.3717,
+                "w": 1.0,
+                "h": 0.1882
+              }
+            },
+            {
+              "id": "this-feeling",
+              "rect": {
+                "x": 0.0,
+                "y": 0.5632,
+                "w": 1.0,
+                "h": 0.2005
+              }
+            },
+            {
+              "id": "another-presence",
+              "rect": {
+                "x": 0.0,
+                "y": 0.7656,
+                "w": 1.0,
+                "h": 0.2344
+              }
+            }
+          ],
+          "glyphs": []
+        },
+        {
+          "id": "fs1-p11",
+          "label": "11",
+          "file": "assets/content/flame-sigil/ch1_p11.png",
+          "asset": "bundled:fs1-p11",
+          "panels": [
+            {
+              "id": "same-moment",
+              "rect": {
+                "x": 0.0,
+                "y": 0.0,
+                "w": 1.0,
+                "h": 0.1895
+              }
+            },
+            {
+              "id": "time-stuttered",
+              "rect": {
+                "x": 0.0,
+                "y": 0.1934,
+                "w": 1.0,
+                "h": 0.1152
+              }
+            },
+            {
+              "id": "vision",
+              "rect": {
+                "x": 0.0,
+                "y": 0.3118,
+                "w": 1.0,
+                "h": 0.2988
+              }
+            },
+            {
+              "id": "atlanta-returned",
+              "rect": {
+                "x": 0.0,
+                "y": 0.6139,
+                "w": 1.0,
+                "h": 0.166
+              }
+            },
+            {
+              "id": "you-felt-that",
+              "rect": {
+                "x": 0.0,
+                "y": 0.7839,
+                "w": 1.0,
+                "h": 0.2161
+              }
+            }
+          ],
+          "glyphs": []
+        },
+        {
+          "id": "fs1-p12",
+          "label": "12",
+          "file": "assets/content/flame-sigil/ch1_p12.png",
+          "asset": "bundled:fs1-p12",
+          "panels": [
+            {
+              "id": "in-here",
+              "rect": {
+                "x": 0.0,
+                "y": 0.1348,
+                "w": 1.0,
+                "h": 0.1686
+              }
+            },
+            {
+              "id": "hands-on-wall",
+              "rect": {
+                "x": 0.0,
+                "y": 0.306,
+                "w": 1.0,
+                "h": 0.1204
+              }
+            },
+            {
+              "id": "thum",
+              "rect": {
+                "x": 0.0,
+                "y": 0.4297,
+                "w": 1.0,
+                "h": 0.1178
+              }
+            },
+            {
+              "id": "vmmm",
+              "rect": {
+                "x": 0.0,
+                "y": 0.5501,
+                "w": 1.0,
+                "h": 0.1126
+              }
+            },
+            {
+              "id": "sigil-wall",
+              "rect": {
+                "x": 0.0,
+                "y": 0.6654,
+                "w": 1.0,
+                "h": 0.1992
+              }
+            }
+          ],
+          "glyphs": []
+        },
+        {
+          "id": "fs1-p13",
+          "label": "13",
+          "file": "assets/content/flame-sigil/ch1_p13.png",
+          "asset": "bundled:fs1-p13",
+          "panels": [
+            {
+              "id": "graffiti-energy",
+              "rect": {
+                "x": 0.0,
+                "y": 0.0,
+                "w": 1.0,
+                "h": 0.2207
+              }
+            },
+            {
+              "id": "flame-arm",
+              "rect": {
+                "x": 0.0,
+                "y": 0.224,
+                "w": 0.5469,
+                "h": 0.2103
+              }
+            },
+            {
+              "id": "storm-arm",
+              "rect": {
+                "x": 0.459,
+                "y": 0.224,
+                "w": 0.541,
+                "h": 0.2103
+              }
+            },
+            {
+              "id": "what-is-this",
+              "rect": {
+                "x": 0.0,
+                "y": 0.4375,
+                "w": 0.5566,
+                "h": 0.1595
+              }
+            },
+            {
+              "id": "its-real",
+              "rect": {
+                "x": 0.4199,
+                "y": 0.4375,
+                "w": 0.5801,
+                "h": 0.1595
+              }
+            },
+            {
+              "id": "keepers",
+              "rect": {
+                "x": 0.0,
+                "y": 0.6009,
+                "w": 1.0,
+                "h": 0.181
+              }
+            },
+            {
+              "id": "a-calling",
+              "rect": {
+                "x": 0.0,
+                "y": 0.7858,
+                "w": 1.0,
+                "h": 0.2142
+              }
+            }
+          ],
+          "glyphs": []
+        },
+        {
+          "id": "fs1-p14",
+          "label": "14",
+          "file": "assets/content/flame-sigil/ch1_p14.png",
+          "asset": "bundled:fs1-p14",
+          "panels": [
+            {
+              "id": "splash",
+              "rect": {
+                "x": 0.0,
+                "y": 0.1348,
+                "w": 1.0,
+                "h": 0.7298
+              }
+            },
+            {
+              "id": "verse-began",
+              "rect": {
+                "x": 0.0,
+                "y": 0.1348,
+                "w": 0.7617,
+                "h": 0.2298
+              }
+            },
+            {
+              "id": "malik",
+              "rect": {
+                "x": 0.0586,
+                "y": 0.2148,
+                "w": 0.4883,
+                "h": 0.6497
+              }
+            },
+            {
+              "id": "ayana",
+              "rect": {
+                "x": 0.4688,
+                "y": 0.2474,
+                "w": 0.5312,
+                "h": 0.6172
+              }
+            },
+            {
+              "id": "true-signal",
+              "rect": {
+                "x": 0.5859,
+                "y": 0.6185,
+                "w": 0.4141,
+                "h": 0.2461
+              }
+            }
+          ],
+          "glyphs": [
+            {
+              "id": "g-phoenix-sleeve",
+              "rect": {
+                "x": 0.1758,
+                "y": 0.3581,
+                "w": 0.1465,
+                "h": 0.0846
+              },
+              "codexEntryId": "malik-blaze",
+              "panel": 2
+            },
+            {
+              "id": "g-forearm-sigil",
+              "rect": {
+                "x": 0.125,
+                "y": 0.4525,
+                "w": 0.1094,
+                "h": 0.166
+              },
+              "codexEntryId": "flame-sigil-mark",
+              "panel": 2
+            },
+            {
+              "id": "g-storm-pendant",
+              "rect": {
+                "x": 0.7178,
+                "y": 0.4297,
+                "w": 0.0684,
+                "h": 0.0456
+              },
+              "codexEntryId": "ayana-storm",
+              "panel": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "publicationId": "flame-sigil-2",
+      "chapterNumber": 2,
+      "label": "Chapter Two",
+      "title": "White Silence",
+      "spoilerLevel": "none",
+      "contentStatus": "awaiting-master",
+      "direction": "ltr",
+      "capabilities": [
+        "standard",
+        "sigil",
+        "echo",
+        "codex",
+        "fragments",
+        "cypher",
+        "verification"
+      ],
+      "availability": {
+        "status": "draft"
+      },
+      "access": {
+        "base": "paid",
+        "previewPages": 3,
+        "promotions": [],
+        "subscriptionEligible": false
+      },
+      "editions": [
+        {
+          "id": "fs2-standard",
+          "tier": "standard",
+          "title": "Standard Digital Edition",
+          "price": {
+            "amountMinor": 499,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs2.standard",
+            "android": "fs2_standard"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Standard digital cover",
+            "Personal reading license",
+            "Digital bookshelf access",
+            "Reading progress",
+            "Offline access where supported"
+          ],
+          "includesReading": true,
+          "collectible": null,
+          "onSale": true
+        },
+        {
+          "id": "fs2-collector",
+          "tier": "collector",
+          "title": "NFT Collector Edition",
+          "price": {
+            "amountMinor": 999,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs2.collector",
+            "android": "fs2_collector"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Exclusive collector cover",
+            "Numbered digital collectible edition",
+            "Publication verification",
+            "Defined collectible ownership rights",
+            "Future transfer capability",
+            "Compatible interactive reading features"
+          ],
+          "includesReading": true,
+          "collectible": {
+            "kind": "numbered",
+            "supply": null,
+            "standard": "erc721"
+          },
+          "onSale": true
+        },
+        {
+          "id": "fs2-legendary",
+          "tier": "legendary",
+          "title": "Legendary Collector Edition",
+          "price": {
+            "amountMinor": 1999,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs2.legendary",
+            "android": "fs2_legendary"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Limited legendary edition",
+            "Exclusive cover artwork",
+            "Additional concept artwork",
+            "Creator commentary",
+            "Behind-the-scenes material",
+            "Selected Memory Fragments",
+            "Verified collectible ownership when blockchain integration is available"
+          ],
+          "includesReading": true,
+          "collectible": {
+            "kind": "numbered",
+            "supply": null,
+            "standard": "erc721"
+          },
+          "onSale": true
+        }
+      ],
+      "contentVersion": 1,
+      "credits": [
+        {
+          "role": "Creator",
+          "name": "J-Sama"
+        },
+        {
+          "role": "Publisher",
+          "name": "TalonSight Technologies"
+        }
+      ],
+      "pages": []
+    },
+    {
+      "publicationId": "flame-sigil-3",
+      "chapterNumber": 3,
+      "label": "Chapter Three",
+      "title": "Loop Season",
+      "spoilerLevel": "none",
+      "contentStatus": "awaiting-master",
+      "direction": "ltr",
+      "capabilities": [
+        "standard",
+        "sigil",
+        "echo",
+        "codex",
+        "fragments",
+        "cypher",
+        "verification"
+      ],
+      "availability": {
+        "status": "draft"
+      },
+      "access": {
+        "base": "paid",
+        "previewPages": 3,
+        "promotions": [],
+        "subscriptionEligible": false
+      },
+      "editions": [
+        {
+          "id": "fs3-standard",
+          "tier": "standard",
+          "title": "Standard Digital Edition",
+          "price": {
+            "amountMinor": 499,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs3.standard",
+            "android": "fs3_standard"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Standard digital cover",
+            "Personal reading license",
+            "Digital bookshelf access",
+            "Reading progress",
+            "Offline access where supported"
+          ],
+          "includesReading": true,
+          "collectible": null,
+          "onSale": true
+        },
+        {
+          "id": "fs3-collector",
+          "tier": "collector",
+          "title": "NFT Collector Edition",
+          "price": {
+            "amountMinor": 999,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs3.collector",
+            "android": "fs3_collector"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Exclusive collector cover",
+            "Numbered digital collectible edition",
+            "Publication verification",
+            "Defined collectible ownership rights",
+            "Future transfer capability",
+            "Compatible interactive reading features"
+          ],
+          "includesReading": true,
+          "collectible": {
+            "kind": "numbered",
+            "supply": null,
+            "standard": "erc721"
+          },
+          "onSale": true
+        },
+        {
+          "id": "fs3-legendary",
+          "tier": "legendary",
+          "title": "Legendary Collector Edition",
+          "price": {
+            "amountMinor": 1999,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs3.legendary",
+            "android": "fs3_legendary"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Limited legendary edition",
+            "Exclusive cover artwork",
+            "Additional concept artwork",
+            "Creator commentary",
+            "Behind-the-scenes material",
+            "Selected Memory Fragments",
+            "Verified collectible ownership when blockchain integration is available"
+          ],
+          "includesReading": true,
+          "collectible": {
+            "kind": "numbered",
+            "supply": null,
+            "standard": "erc721"
+          },
+          "onSale": true
+        }
+      ],
+      "contentVersion": 1,
+      "credits": [
+        {
+          "role": "Creator",
+          "name": "J-Sama"
+        },
+        {
+          "role": "Publisher",
+          "name": "TalonSight Technologies"
+        }
+      ],
+      "pages": []
+    },
+    {
+      "publicationId": "flame-sigil-4",
+      "chapterNumber": 4,
+      "label": "Chapter Four",
+      "title": "Roots Run Deep",
+      "spoilerLevel": "none",
+      "contentStatus": "awaiting-master",
+      "direction": "ltr",
+      "capabilities": [
+        "standard",
+        "sigil",
+        "echo",
+        "codex",
+        "fragments",
+        "cypher",
+        "verification"
+      ],
+      "availability": {
+        "status": "draft"
+      },
+      "access": {
+        "base": "paid",
+        "previewPages": 3,
+        "promotions": [],
+        "subscriptionEligible": false
+      },
+      "editions": [
+        {
+          "id": "fs4-standard",
+          "tier": "standard",
+          "title": "Standard Digital Edition",
+          "price": {
+            "amountMinor": 499,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs4.standard",
+            "android": "fs4_standard"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Standard digital cover",
+            "Personal reading license",
+            "Digital bookshelf access",
+            "Reading progress",
+            "Offline access where supported"
+          ],
+          "includesReading": true,
+          "collectible": null,
+          "onSale": true
+        },
+        {
+          "id": "fs4-collector",
+          "tier": "collector",
+          "title": "NFT Collector Edition",
+          "price": {
+            "amountMinor": 999,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs4.collector",
+            "android": "fs4_collector"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Exclusive collector cover",
+            "Numbered digital collectible edition",
+            "Publication verification",
+            "Defined collectible ownership rights",
+            "Future transfer capability",
+            "Compatible interactive reading features"
+          ],
+          "includesReading": true,
+          "collectible": {
+            "kind": "numbered",
+            "supply": null,
+            "standard": "erc721"
+          },
+          "onSale": true
+        },
+        {
+          "id": "fs4-legendary",
+          "tier": "legendary",
+          "title": "Legendary Collector Edition",
+          "price": {
+            "amountMinor": 1999,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs4.legendary",
+            "android": "fs4_legendary"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Limited legendary edition",
+            "Exclusive cover artwork",
+            "Additional concept artwork",
+            "Creator commentary",
+            "Behind-the-scenes material",
+            "Selected Memory Fragments",
+            "Verified collectible ownership when blockchain integration is available"
+          ],
+          "includesReading": true,
+          "collectible": {
+            "kind": "numbered",
+            "supply": null,
+            "standard": "erc721"
+          },
+          "onSale": true
+        }
+      ],
+      "contentVersion": 1,
+      "credits": [
+        {
+          "role": "Creator",
+          "name": "J-Sama"
+        },
+        {
+          "role": "Publisher",
+          "name": "TalonSight Technologies"
+        }
+      ],
+      "pages": []
+    },
+    {
+      "publicationId": "flame-sigil-5",
+      "chapterNumber": 5,
+      "label": "Chapter Five",
+      "title": "Cipher Temple",
+      "spoilerLevel": "none",
+      "contentStatus": "awaiting-master",
+      "direction": "ltr",
+      "capabilities": [
+        "standard",
+        "sigil",
+        "echo",
+        "codex",
+        "fragments",
+        "cypher",
+        "verification"
+      ],
+      "availability": {
+        "status": "draft"
+      },
+      "access": {
+        "base": "paid",
+        "previewPages": 3,
+        "promotions": [],
+        "subscriptionEligible": false
+      },
+      "editions": [
+        {
+          "id": "fs5-standard",
+          "tier": "standard",
+          "title": "Standard Digital Edition",
+          "price": {
+            "amountMinor": 499,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs5.standard",
+            "android": "fs5_standard"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Standard digital cover",
+            "Personal reading license",
+            "Digital bookshelf access",
+            "Reading progress",
+            "Offline access where supported"
+          ],
+          "includesReading": true,
+          "collectible": null,
+          "onSale": true
+        },
+        {
+          "id": "fs5-collector",
+          "tier": "collector",
+          "title": "NFT Collector Edition",
+          "price": {
+            "amountMinor": 999,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs5.collector",
+            "android": "fs5_collector"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Exclusive collector cover",
+            "Numbered digital collectible edition",
+            "Publication verification",
+            "Defined collectible ownership rights",
+            "Future transfer capability",
+            "Compatible interactive reading features"
+          ],
+          "includesReading": true,
+          "collectible": {
+            "kind": "numbered",
+            "supply": null,
+            "standard": "erc721"
+          },
+          "onSale": true
+        },
+        {
+          "id": "fs5-legendary",
+          "tier": "legendary",
+          "title": "Legendary Collector Edition",
+          "price": {
+            "amountMinor": 1999,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs5.legendary",
+            "android": "fs5_legendary"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Limited legendary edition",
+            "Exclusive cover artwork",
+            "Additional concept artwork",
+            "Creator commentary",
+            "Behind-the-scenes material",
+            "Selected Memory Fragments",
+            "Verified collectible ownership when blockchain integration is available"
+          ],
+          "includesReading": true,
+          "collectible": {
+            "kind": "numbered",
+            "supply": null,
+            "standard": "erc721"
+          },
+          "onSale": true
+        }
+      ],
+      "contentVersion": 1,
+      "credits": [
+        {
+          "role": "Creator",
+          "name": "J-Sama"
+        },
+        {
+          "role": "Publisher",
+          "name": "TalonSight Technologies"
+        }
+      ],
+      "pages": []
+    },
+    {
+      "publicationId": "flame-sigil-6",
+      "chapterNumber": 6,
+      "label": "Chapter Six",
+      "title": "Smoke and Static",
+      "spoilerLevel": "none",
+      "contentStatus": "awaiting-master",
+      "direction": "ltr",
+      "capabilities": [
+        "standard",
+        "sigil",
+        "echo",
+        "codex",
+        "fragments",
+        "cypher",
+        "verification"
+      ],
+      "availability": {
+        "status": "draft"
+      },
+      "access": {
+        "base": "paid",
+        "previewPages": 3,
+        "promotions": [],
+        "subscriptionEligible": false
+      },
+      "editions": [
+        {
+          "id": "fs6-standard",
+          "tier": "standard",
+          "title": "Standard Digital Edition",
+          "price": {
+            "amountMinor": 499,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs6.standard",
+            "android": "fs6_standard"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Standard digital cover",
+            "Personal reading license",
+            "Digital bookshelf access",
+            "Reading progress",
+            "Offline access where supported"
+          ],
+          "includesReading": true,
+          "collectible": null,
+          "onSale": true
+        },
+        {
+          "id": "fs6-collector",
+          "tier": "collector",
+          "title": "NFT Collector Edition",
+          "price": {
+            "amountMinor": 999,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs6.collector",
+            "android": "fs6_collector"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Exclusive collector cover",
+            "Numbered digital collectible edition",
+            "Publication verification",
+            "Defined collectible ownership rights",
+            "Future transfer capability",
+            "Compatible interactive reading features"
+          ],
+          "includesReading": true,
+          "collectible": {
+            "kind": "numbered",
+            "supply": null,
+            "standard": "erc721"
+          },
+          "onSale": true
+        },
+        {
+          "id": "fs6-legendary",
+          "tier": "legendary",
+          "title": "Legendary Collector Edition",
+          "price": {
+            "amountMinor": 1999,
+            "currency": "USD"
+          },
+          "productIds": {
+            "ios": "com.talonsight.echoreader.fs6.legendary",
+            "android": "fs6_legendary"
+          },
+          "benefits": [
+            "Complete readable chapter",
+            "Limited legendary edition",
+            "Exclusive cover artwork",
+            "Additional concept artwork",
+            "Creator commentary",
+            "Behind-the-scenes material",
+            "Selected Memory Fragments",
+            "Verified collectible ownership when blockchain integration is available"
+          ],
+          "includesReading": true,
+          "collectible": {
+            "kind": "numbered",
+            "supply": null,
+            "standard": "erc721"
+          },
+          "onSale": true
+        }
+      ],
+      "contentVersion": 1,
+      "credits": [
+        {
+          "role": "Creator",
+          "name": "J-Sama"
+        },
+        {
+          "role": "Publisher",
+          "name": "TalonSight Technologies"
+        }
+      ],
+      "pages": []
+    }
+  ]
+}

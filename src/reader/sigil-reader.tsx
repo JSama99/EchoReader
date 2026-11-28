@@ -27,6 +27,8 @@ import { PageArt } from './page-art';
  */
 export function SigilReader({
   chapter,
+  pageCount,
+  reduceMotion,
   step,
   direction,
   transition,
@@ -39,6 +41,10 @@ export function SigilReader({
   onEnd,
 }: {
   chapter: Chapter;
+  /** Readable pages (fewer than chapter.pages for previews). */
+  pageCount: number;
+  /** Cut between panels and skip camera animation. */
+  reduceMotion: boolean;
   step: Step;
   direction: ReadingDirection;
   transition: 'glide' | 'cut';
@@ -51,7 +57,8 @@ export function SigilReader({
   onEnd: () => void;
 }) {
   const [viewport, setViewport] = useState({ width: 0, height: 0 });
-  const page = chapter.pages[step.page];
+  const pages = useMemo(() => chapter.pages.slice(0, pageCount), [chapter.pages, pageCount]);
+  const page = pages[step.page];
 
   // Draw the page at a base size that fits the viewport; the camera zooms from there.
   const pageSize = useMemo(() => {
@@ -74,7 +81,7 @@ export function SigilReader({
 
   useEffect(() => {
     if (pageSize.width === 0) return;
-    const cfg = { duration: transition === 'glide' ? 420 : 0, easing: Easing.bezier(0.2, 0.8, 0.2, 1) };
+    const cfg = { duration: transition === 'glide' && !reduceMotion ? 420 : 0, easing: Easing.bezier(0.2, 0.8, 0.2, 1) };
     // Transforms scale around the view's center on every platform; convert the
     // camera's top-left-origin translation so we never depend on transformOrigin.
     const o = originCompensation(camera, pageSize);
@@ -85,7 +92,7 @@ export function SigilReader({
     sy.value = withTiming(camera.translateY + rect.y * pageSize.height * camera.scale, cfg);
     sw.value = withTiming(rect.w * pageSize.width * camera.scale, cfg);
     sh.value = withTiming(rect.h * pageSize.height * camera.scale, cfg);
-  }, [camera, pageSize, rect, transition, tx, ty, sc, sx, sy, sw, sh]);
+  }, [camera, pageSize, rect, transition, reduceMotion, tx, ty, sc, sx, sy, sw, sh]);
 
   const animated = useAnimatedStyle(() => ({
     transform: [{ translateX: tx.value }, { translateY: ty.value }, { scale: sc.value }],
@@ -109,7 +116,7 @@ export function SigilReader({
 
     const action = tapZoneAction(x, viewport.width, direction);
     if (action === 'menu') return onMenu();
-    const target = action === 'next' ? nextStep(chapter.pages, step) : prevStep(chapter.pages, step);
+    const target = action === 'next' ? nextStep(pages, step) : prevStep(pages, step);
     if (target) onStep(target);
     else if (action === 'next') onEnd();
   };
@@ -150,7 +157,7 @@ export function SigilReader({
           { name: 'decrement', label: 'Previous panel' },
         ]}
         onAccessibilityAction={(ev) => {
-          const t = ev.nativeEvent.actionName === 'increment' ? nextStep(chapter.pages, step) : prevStep(chapter.pages, step);
+          const t = ev.nativeEvent.actionName === 'increment' ? nextStep(pages, step) : prevStep(pages, step);
           if (t) onStep(t);
         }}
       />

@@ -1,41 +1,47 @@
-# Content: what’s real, what’s placeholder, and how to add a chapter
+# Content: what's real, what's placeholder, and how to publish a chapter
+
+## Approved catalog (from the v0.2 brief)
+
+Prologue · Chapter One, Signal Lost · Chapter Two, White Silence · Chapter Three, Loop Season · Chapter Four, Roots Run Deep · Chapter Five, Cipher Temple · Chapter Six, Smoke and Static. Later chapters are added only with approved metadata. **Never invent titles, dates or lore.**
 
 ## Real (from the creator)
 
 | File | Used for |
 | --- | --- |
-| `assets/content/flame-sigil/fs_cover.jpg` | Library hero, shelf, Discover, series thumbnails |
-| `assets/content/flame-sigil/malik_portrait.jpg` | Codex: Malik Blaze portrait (cropped from the “Malik Blaze: The Flame Awakens” poster) |
-| `assets/content/flame-sigil/ch1_p04.jpg` | Chapter 1, page 4 |
-| `assets/content/flame-sigil/ch1_p22_finale.jpg` | Chapter 1, final page (“End of Chapter One”) |
+| `assets/content/flame-sigil/fs_cover.jpg` | Home hero, shelves, Discover |
+| `assets/content/flame-sigil/malik_portrait.jpg` | Codex portrait for Malik Blaze |
+| `assets/content/flame-sigil/prologue_p01.png` … `prologue_p06.png` | Prologue, pages 1–6 (complete; added 2026-11-27) |
+| `assets/content/flame-sigil/ch1_p01.png` … `ch1_p14.png` | Chapter One: Signal Lost, pages 1–14 (complete website masters; added 2026-11-27) |
 
-Panel geometry on page 4 was measured from the art: the horizontal gutters sit at y ≈ 327, 614, 909 and 1164 px. Glyph rects on the finale were overlaid on the art and checked visually.
+Prologue panel boxes were measured from the pure-white gutters in each page (32 panels). Page 1 is a single splash, framed as five reading beats: the full scene, the first balloon, the timeline screen, the second balloon and the closing caption. Page 3's slanted top border is split into the elder and the burning city. Chapter One's 83 panels were authored the same way against a pixel grid; slanted borders are framed by bounding boxes. Page 3's layout is identical to the v0.1 excerpt page and kept its geometry. Glyph rects on page 14 were checked at full resolution.
 
-Codex text uses only canon facts (Malik Blaze is a Phoenix Elemental, Ayana Storm is a Storm Elemental, Maestro Re:Verse is Malik’s brother) and words drawn from the pages’ own captions.
+## Placeholder or pending (marked in the data)
 
-## Placeholder (replace with canon)
+- **Chapter One: Signal Lost is complete**: 14 pages from the website masters. The two v0.1 excerpt pages were retired; the old page 4 art is kept only as a test fixture (`__tests__/fixtures/sample-page.jpg`).
+- **Chapters Two to Six** are `awaiting-master` with `availability: draft`. They have no pages, dates or descriptions until approved masters arrive.
+- **The Prologue** is complete and free. It has no Echo glyphs or Codex entries yet; those need creator-approved lore.
+- **Echo glyphs:** the Ebenezer bell on page 3 (The Pulse); on page 14, Malik's phoenix jacket (Malik Blaze), his burning forearm (The Flame Sigil) and Ayana's pendant (Ayana Storm). Codex reveals follow those pages.
+- **Fragment I** ("The True Signal") is found on page 14's closing caption. Fragments II–IX are not placed.
+- **Malik's sealed line** ("His brother is Maestro Re:Verse") reveals at Chapter Two.
+- **Cypher comments** in `src/content/lore.ts` are sample discussion and are labeled as such in the UI.
+- **Credits** are "Creator: J-Sama" and "Publisher: TalonSight Technologies". Add artist and letterer credits; credits are part of the publication hash.
+- **Legendary supply** is `null` (not set). The publisher sets the edition quantity in `content-src/flame-sigil.json`.
 
-- **Chapter 1 is a two-page preview** (page 4 + finale) because only those pages exist so far.
-- **Chapter 1 title** “The Verse Begins Again” comes from the finale caption. Confirm or rename.
-- **Fragment I** “The True Signal” is placed on the finale’s last panel. Fragments II–IX are not placed.
-- **Reveal positions:** Malik’s sealed line (“His brother is Maestro Re:Verse”) is set to reveal at Chapter 2.
-- **Chapter 2** is scheduled for Fri Nov 27 2026, 9:00 AM ET (free 24h later) with no pages yet. It demonstrates the early-access flow.
-- **Cypher comments** in `catalog.ts` are sample data so the thread UI can be reviewed.
-- **Credits** in `editions.json` are “Creator: J-Sama” and “Publisher: TalonSight Technologies”. Add the artist and letterer credits. Credits are part of the POW hash.
+## Publish a chapter (bundled)
 
-## Add a chapter
+1. Put the approved page files in `assets/content/flame-sigil/` exactly as delivered (JPEG/PNG/WebP).
+2. Add static `require()` entries to `src/content/images.ts` (`pageImages`), because Metro needs them.
+3. Edit `content-src/flame-sigil.json`, the editorial source:
+   - `pages`: `{ id, label, file, asset: "bundled:<id>", panels, glyphs }` in reading order. Panels are normalized rects; glyphs reference a Codex entry and a panel index.
+   - `contentStatus`: `complete` when every page of the master is present.
+   - `availability`: `published`, or `scheduled` with `releaseAt`.
+   - `access`: `free`, or `paid` with `previewPages` and editions.
+   - Bump `contentVersion` for the publication and `version` for the manifest, and update `issuedAt`.
+4. Run `npm run build-manifests`. This hashes every page, records its pixel size, computes the publication hash and signs the manifest.
+5. Run `npm run verify`.
 
-1. Export pages as JPEG (≈1024 px wide is plenty on phones; up to 2048 for tablets) into `assets/content/<series>/`.
-2. Add the files to `src/content/images.ts` (`pageImages`). Metro needs static `require()` calls.
-3. Add the chapter to `src/content/editions.json` with credits and page order.
-4. Add the chapter to `src/content/catalog.ts`:
-   - `panels`: one normalized rect per panel, in reading order. Rects may overlap for diagonal gutters.
-   - `glyphs`: a normalized rect plus `codexEntryId` and the `panel` index where the glyph becomes discoverable.
-   - Set `publishedAt` and `freeAt` so the gap is ≤ 24h. Tests fail otherwise.
-5. Run `npm run hash-content` to regenerate the POW ledger, then `npm run verify`.
-
-The catalog tests catch out-of-page rects, glyphs pointing at missing entries or panels, Codex lines revealed before their entry, unfair schedules, credit/page-order drift and stale hashes.
+Paid chapters must not be bundled in full: the manifest validator rejects any public `asset` on a paid page beyond the preview, and any asset on an unpublished page. Paid pages are delivered by the content service (see `docs/v0.2/06-MANIFEST-SPEC.md`).
 
 ## Right-to-left (manga) titles
 
-Set `direction: 'rtl'` and `defaultMode: 'pages'` on the series and author `panels` in RTL reading order. Tap zones and swipe direction invert automatically.
+Set `direction: "rtl"` on the series and publications and author `panels` in RTL reading order. Tap zones, swipe direction and spreads invert automatically. Imported comics can be switched to RTL on their detail page; CBZ files with `<Manga>YesAndRightToLeft</Manga>` in ComicInfo.xml import as RTL.

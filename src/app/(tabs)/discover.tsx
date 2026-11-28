@@ -1,14 +1,17 @@
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { chaptersOf, codex, series } from '@/content/catalog';
+import { allChapters, allSeries, chaptersOf, codex, getSeries } from '@/content/catalog';
+import { ACCESS_LABEL } from '@/domain/commerce/access';
 import { coverImages } from '@/content/images';
 import { discoveredEntries } from '@/domain/spoilers';
-import { useFragments, furthestOf } from '@/state/derived';
+import { chapterName } from '@/domain/library';
+import { accessOf, furthestOf, useCatalogVersion, useFragments, useNow } from '@/state/derived';
+import { track } from '@/services/analytics';
 import { useDispatch, useReader } from '@/state/store';
 import { color, font, radius } from '@/theme/tokens';
 import { Search } from '@/ui/icons';
@@ -21,6 +24,14 @@ export default function Discover() {
   const state = useReader((s) => s);
   const [q, setQ] = useState('');
   const frags = useFragments('flame-sigil');
+  const now = useNow(60_000);
+  useCatalogVersion();
+  const series = allSeries();
+  useEffect(() => track({ name: 'discover_open' }), []);
+  const released = allChapters().filter((c) => c.pages.length > 0 || c.contentStatus === 'awaiting-master');
+  const withAccess = released.map((c) => ({ c, a: accessOf(state, c.id, now) }));
+  const free = withAccess.filter(({ a }) => a.kind === 'free' || a.kind === 'promotional');
+  const premium = withAccess.filter(({ a }) => a.kind === 'preview' || a.kind === 'paid' || a.kind === 'purchased' || a.kind === 'collectible');
 
   const query = q.trim().toLowerCase();
   // Search only what the reader is allowed to know: titles plus discovered Codex entries.
@@ -89,6 +100,17 @@ export default function Discover() {
               onPress={live ? () => router.push(`/series/${s.id}`) : undefined}
               accessibilityRole={live ? 'button' : 'text'}
               style={styles.row}
+              trailing={
+                live ? (
+                  <Button
+                    kind={following ? 'ghost' : 'bone'}
+                    label={following ? 'Following' : 'Follow'}
+                    height={34}
+                    style={{ paddingHorizontal: 14 }}
+                    onPress={() => dispatch({ type: 'toggleFollow', seriesId: s.id })}
+                  />
+                ) : undefined
+              }
             >
               <View style={styles.thumb}>
                 {coverImages[s.id] ? (
@@ -100,22 +122,45 @@ export default function Discover() {
               <View style={{ flex: 1, gap: 3 }}>
                 <T v="bodyStrong">{s.title}</T>
                 <T v="caption" style={{ color: s.id === 'flame-sigil-origin' ? color.glyph : color.smoke }}>
-                  {live ? `${chs} chapters · new Fridays` : s.id === 'flame-sigil-origin' ? `Fragments ${frags.count}/9` : s.releaseLabel}
+                  {live ? `${chs} publications` : s.id === 'flame-sigil-origin' ? `Fragments ${frags.count}/9` : s.releaseLabel}
                 </T>
               </View>
-              {live && (
-                <Button
-                  kind={following ? 'ghost' : 'bone'}
-                  label={following ? 'Following' : 'Follow'}
-                  height={34}
-                  style={{ paddingHorizontal: 14 }}
-                  onPress={() => dispatch({ type: 'toggleFollow', seriesId: s.id })}
-                />
-              )}
             </Row>
           );
         })}
       </View>
+
+      {!query &&
+        ([
+          ['Free to read', free],
+          ['Premium chapters', premium],
+        ] as const).map(([title, list]) =>
+          list.length === 0 ? null : (
+            <View key={title} style={{ paddingHorizontal: 24, paddingTop: 26 }}>
+              <T v="title" style={{ paddingBottom: 6 }}>
+                {title}
+              </T>
+              {list.map(({ c, a }) => (
+                <Row
+                  key={c.id}
+                  onPress={() => router.push(c.pages.length > 0 && (title === 'Free to read' || a.kind !== 'paid') ? `/read/${c.id}` : `/editions/${c.id}`)}
+                  accessibilityRole="button"
+                  accessibilityLabel={`${getSeries(c.seriesId)?.title}, ${c.label}, ${c.title}. ${ACCESS_LABEL[a.kind]}`}
+                  style={styles.row}
+                >
+                  <View style={{ flex: 1, gap: 3 }}>
+                    <T v="bodyStrong">
+                      {chapterName(c)}
+                    </T>
+                    <T v="caption">
+                      {getSeries(c.seriesId)?.title} · {c.pages.length > 0 ? ACCESS_LABEL[a.kind] : 'Pages not yet released'}
+                    </T>
+                  </View>
+                </Row>
+              ))}
+            </View>
+          ),
+        )}
 
       {codexHits.length > 0 && (
         <View style={{ paddingHorizontal: 24, paddingTop: 20 }}>

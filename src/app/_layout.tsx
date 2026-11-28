@@ -11,7 +11,8 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-import { StoreProvider, useHydrated } from '@/state/store';
+import { setConsent, track } from '@/services/analytics';
+import { StoreProvider, useHydrated, useReader } from '@/state/store';
 import { color } from '@/theme/tokens';
 
 void SplashScreen.preventAutoHideAsync();
@@ -32,6 +33,13 @@ function Navigator() {
     JetBrainsMono_500Medium,
   });
   const ready = hydrated && fontsLoaded;
+  const consent = useReader((s) => s.analyticsConsent);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    setConsent(consent);
+    if (consent) track({ name: 'app_open' });
+  }, [hydrated, consent]);
 
   useEffect(() => {
     if (ready) void SplashScreen.hideAsync();
@@ -44,12 +52,14 @@ function Navigator() {
       <Stack.Screen name="(tabs)" />
       <Stack.Screen name="series/[id]" options={{ animation: 'slide_from_right' }} />
       <Stack.Screen name="read/[chapterId]" options={{ animation: 'fade', gestureEnabled: true }} />
+      <Stack.Screen name="codex/index" options={{ animation: 'slide_from_right' }} />
       <Stack.Screen name="codex/[id]" options={{ animation: 'slide_from_right' }} />
+      <Stack.Screen name="cypher" options={{ animation: 'slide_from_right' }} />
+      <Stack.Screen name="publication/[id]" options={{ animation: 'slide_from_right' }} />
       <Stack.Screen name="thread/[key]" options={{ animation: 'slide_from_right' }} />
       <Stack.Screen name="downloads" options={{ animation: 'slide_from_right' }} />
-      <Stack.Screen name="profile" options={{ animation: 'slide_from_right' }} />
       <Stack.Screen name="onboarding" options={{ animation: 'fade', gestureEnabled: false }} />
-      <Stack.Screen name="unlock/[chapterId]" options={{ presentation: 'transparentModal', animation: 'fade' }} />
+      <Stack.Screen name="editions/[chapterId]" options={{ animation: 'slide_from_bottom' }} />
       <Stack.Screen name="fragment/[id]" options={{ presentation: 'fullScreenModal', animation: 'fade' }} />
     </Stack>
   );
